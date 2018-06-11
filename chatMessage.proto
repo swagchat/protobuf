@@ -4,14 +4,15 @@ package swagchat.protobuf;
 option go_package = "github.com/swagchat/protobuf";
 
 message Room{
-  string roomId = 1;
-  string userId = 2;
-  string name = 3;
-  string pictureURL = 4;
-  string type = 5;
-  string WebhookToken = 6;
-  int64 created = 7;
-  int64 modified = 8;
+  string workspace = 1;
+  string roomId = 11;
+  string userId = 12;
+  string name = 13;
+  string pictureURL = 14;
+  string type = 15;
+  string WebhookToken = 16;
+  int64 created = 30;
+  int64 modified = 31;
 }
 
 message Messages{
@@ -23,12 +24,13 @@ message Messages{
 }
 
 message Message{
-  string roomId = 1;
-  string userId = 2;
-  string type = 3;
-  string eventName = 4;
-  string text = 5;
-  string WebhookToken = 6;
-  int64 created = 7;
-  int64 modified = 8;
+  string workspace = 1;
+  string roomId = 11;
+  string userId = 12;
+  string type = 13;
+  string eventName = 14;
+  string text = 15;
+  string WebhookToken = 16;
+  int64 created = 30;
+  int64 modified = 31;
 }

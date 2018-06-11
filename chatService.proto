@@ -8,6 +8,10 @@ import "google/protobuf/empty.proto";
 import "chatMessage.proto";
 
 service Chat {
+  // Incoming
+  rpc PostMessage (Message) returns (google.protobuf.Empty) {}
+
+  // Outgoing
   rpc PostWebhookRoom (Room) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post: "/webhooks/room"
