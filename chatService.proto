@@ -7,10 +7,12 @@ import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 import "chatMessage.proto";
 
-service Chat {
+service  ChatIncoming {
   // Incoming
   rpc PostMessage (Message) returns (google.protobuf.Empty) {}
+}
 
+service ChatOutgoing {
   // Outgoing
   rpc PostWebhookRoom (Room) returns (google.protobuf.Empty) {
     option (google.api.http) = {
