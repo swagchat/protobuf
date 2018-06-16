@@ -28,7 +28,7 @@ var _ status.Status
 var _ = runtime.String
 var _ = utilities.NewDoubleArray
 
-func request_Chat_PostWebhookRoom_0(ctx context.Context, marshaler runtime.Marshaler, client ChatClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_ChatOutgoing_PostWebhookRoom_0(ctx context.Context, marshaler runtime.Marshaler, client ChatOutgoingClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq Room
 	var metadata runtime.ServerMetadata
 
@@ -41,7 +41,7 @@ func request_Chat_PostWebhookRoom_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func request_Chat_PostWebhookMessage_0(ctx context.Context, marshaler runtime.Marshaler, client ChatClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_ChatOutgoing_PostWebhookMessage_0(ctx context.Context, marshaler runtime.Marshaler, client ChatOutgoingClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq Message
 	var metadata runtime.ServerMetadata
 
@@ -54,9 +54,9 @@ func request_Chat_PostWebhookMessage_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-// RegisterChatHandlerFromEndpoint is same as RegisterChatHandler but
+// RegisterChatOutgoingHandlerFromEndpoint is same as RegisterChatOutgoingHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterChatHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterChatOutgoingHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -76,23 +76,23 @@ func RegisterChatHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux,
 		}()
 	}()
 
-	return RegisterChatHandler(ctx, mux, conn)
+	return RegisterChatOutgoingHandler(ctx, mux, conn)
 }
 
-// RegisterChatHandler registers the http handlers for service Chat to "mux".
+// RegisterChatOutgoingHandler registers the http handlers for service ChatOutgoing to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterChatHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterChatHandlerClient(ctx, mux, NewChatClient(conn))
+func RegisterChatOutgoingHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterChatOutgoingHandlerClient(ctx, mux, NewChatOutgoingClient(conn))
 }
 
-// RegisterChatHandler registers the http handlers for service Chat to "mux".
-// The handlers forward requests to the grpc endpoint over the given implementation of "ChatClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "ChatClient"
+// RegisterChatOutgoingHandler registers the http handlers for service ChatOutgoing to "mux".
+// The handlers forward requests to the grpc endpoint over the given implementation of "ChatOutgoingClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "ChatOutgoingClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "ChatClient" to call the correct interceptors.
-func RegisterChatHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ChatClient) error {
+// "ChatOutgoingClient" to call the correct interceptors.
+func RegisterChatOutgoingHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ChatOutgoingClient) error {
 
-	mux.Handle("POST", pattern_Chat_PostWebhookRoom_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ChatOutgoing_PostWebhookRoom_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		if cn, ok := w.(http.CloseNotifier); ok {
@@ -110,18 +110,18 @@ func RegisterChatHandlerClient(ctx context.Context, mux *runtime.ServeMux, clien
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Chat_PostWebhookRoom_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ChatOutgoing_PostWebhookRoom_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_Chat_PostWebhookRoom_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ChatOutgoing_PostWebhookRoom_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_Chat_PostWebhookMessage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ChatOutgoing_PostWebhookMessage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		if cn, ok := w.(http.CloseNotifier); ok {
@@ -139,14 +139,14 @@ func RegisterChatHandlerClient(ctx context.Context, mux *runtime.ServeMux, clien
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Chat_PostWebhookMessage_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ChatOutgoing_PostWebhookMessage_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_Chat_PostWebhookMessage_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ChatOutgoing_PostWebhookMessage_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -154,13 +154,13 @@ func RegisterChatHandlerClient(ctx context.Context, mux *runtime.ServeMux, clien
 }
 
 var (
-	pattern_Chat_PostWebhookRoom_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"webhooks", "room"}, ""))
+	pattern_ChatOutgoing_PostWebhookRoom_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"webhooks", "room"}, ""))
 
-	pattern_Chat_PostWebhookMessage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"webhooks", "message"}, ""))
+	pattern_ChatOutgoing_PostWebhookMessage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"webhooks", "message"}, ""))
 )
 
 var (
-	forward_Chat_PostWebhookRoom_0 = runtime.ForwardResponseMessage
+	forward_ChatOutgoing_PostWebhookRoom_0 = runtime.ForwardResponseMessage
 
-	forward_Chat_PostWebhookMessage_0 = runtime.ForwardResponseMessage
+	forward_ChatOutgoing_PostWebhookMessage_0 = runtime.ForwardResponseMessage
 )
