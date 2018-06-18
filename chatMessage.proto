@@ -45,4 +45,6 @@ message MessagePayload {
   string filename = 12;
   string sourceUrl = 13;
   string thumbnailUrl = 14;
+  int32 width = 15;
+  int32 height = 16;
 }
