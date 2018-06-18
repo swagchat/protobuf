@@ -29,8 +29,22 @@ message Message{
   string userId = 12;
   string type = 13;
   string eventName = 14;
-  string text = 15;
+  oneof payload {
+    MessageText text = 21;
+    MessageImage image = 22;
+  }
   string WebhookToken = 16;
   int64 created = 30;
   int64 modified = 31;
+}
+
+message MessageText{
+  string text = 1;
+}
+
+message MessageImage{
+  string mime = 1;
+  string filename = 2;
+  string sourceUrl = 3;
+  string thumbnailUrl = 4;
 }
