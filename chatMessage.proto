@@ -29,7 +29,7 @@ message Message{
   string userId = 12;
   string type = 13;
   string eventName = 14;
-  bytes payload = 15;
+  string payload = 15;
   int32 role = 16;
   string WebhookToken = 17;
   int64 created = 30;
