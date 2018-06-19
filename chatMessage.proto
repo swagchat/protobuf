@@ -25,6 +25,8 @@ message Messages{
 
 message Message{
   string workspace = 1;
+  string endpoint = 2;
+  string authorization = 3;
   string roomId = 11;
   string userId = 12;
   string type = 13;
