@@ -8,12 +8,10 @@ import "google/protobuf/empty.proto";
 import "chatMessage.proto";
 
 service  ChatIncoming {
-  // Incoming
   rpc PostMessage (Message) returns (google.protobuf.Empty) {}
 }
 
 service ChatOutgoing {
-  // Outgoing
   rpc PostWebhookRoom (Room) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post: "/webhooks/room"
@@ -24,6 +22,33 @@ service ChatOutgoing {
     option (google.api.http) = {
       post: "/webhooks/message"
       body: "*"
+    };
+  }
+}
+
+service UserRoleService {
+  rpc Post (UserRole) returns (UserRole) {
+    option (google.api.http) = {
+      post: "/userRoles"
+      body: "*"
+    };
+  }
+
+  rpc Delete (UserRole) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/userRoles"
+    };
+  }
+
+  rpc GetRoleIDs (GetRoleIDsReq) returns (RoleIDs) {
+    option (google.api.http) = {
+      get: "/userRoles/roles"
+    };
+  }
+  
+  rpc GetUserIDs (GetUserIDsReq) returns (UserIDs) {
+    option (google.api.http) = {
+      get: "/userRoles/users"
     };
   }
 }

@@ -50,3 +50,23 @@ message MessagePayload {
   int32 width = 15;
   int32 height = 16;
 }
+
+message UserRole {
+  string userID = 1;
+  string roleID = 2;
+}
+
+message GetUserIDsReq {
+  string roleID = 1;
+}
+
+message UserIDs {
+  repeated string userIDs = 1;
+}
+
+message GetRoleIDsReq {
+  string userID = 1;
+}
+message RoleIDs {
+  repeated string roleIDs = 1;
+}
