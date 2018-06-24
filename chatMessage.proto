@@ -52,12 +52,14 @@ message MessagePayload {
 }
 
 message UserRole {
+  // @inject_tag: db:"user_id"
   string userID = 1;
-  string roleID = 2;
+  // @inject_tag: db:"role_id"
+  int32 roleID = 2;
 }
 
 message GetUserIDsReq {
-  string roleID = 1;
+  int32 roleID = 1;
 }
 
 message UserIDs {
@@ -68,5 +70,5 @@ message GetRoleIDsReq {
   string userID = 1;
 }
 message RoleIDs {
-  repeated string roleIDs = 1;
+  repeated int32 roleIDs = 1;
 }

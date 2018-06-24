@@ -34,12 +34,6 @@ service UserRoleService {
     };
   }
 
-  rpc Delete (UserRole) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      delete: "/userRoles"
-    };
-  }
-
   rpc GetRoleIDs (GetRoleIDsReq) returns (RoleIDs) {
     option (google.api.http) = {
       get: "/userRoles/roles"
@@ -49,6 +43,12 @@ service UserRoleService {
   rpc GetUserIDs (GetUserIDsReq) returns (UserIDs) {
     option (google.api.http) = {
       get: "/userRoles/users"
+    };
+  }
+
+  rpc Delete (UserRole) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/userRoles"
     };
   }
 }
