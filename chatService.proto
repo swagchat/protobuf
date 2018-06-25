@@ -27,7 +27,7 @@ service ChatOutgoing {
 }
 
 service UserRoleService {
-  rpc PostUserRole (UserRole) returns (UserRole) {
+  rpc PostUserRole (PostUserRoleReq) returns (UserRole) {
     option (google.api.http) = {
       post: "/userRoles"
       body: "*"
