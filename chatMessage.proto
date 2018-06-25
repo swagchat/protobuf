@@ -92,12 +92,15 @@ message RoomUser {
   string userID = 12;
   // @inject_tag: db:"unread_count"
   int32 unreadCount = 13;
+  // @inject_tag: db:"display"
+  int32 display = 14;
 }
 
 message PostRoomUserReq {
   string workspace = 1;
   string roomID = 11;
   repeated string userIDs = 12;
+  bool display = 13;
 }
 
 message DeleteRoomUserReq {
