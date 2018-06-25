@@ -72,11 +72,13 @@ message UserRole {
 }
 
 message GetUserIDsOfUserRoleReq {
-  int32 roleID = 1;
+  string workspace = 1;
+  int32 roleID = 12;
 }
 
 message GetRoleIDsOfUserRoleReq {
-  string userID = 1;
+  string workspace = 1;
+  string userID = 11;
 }
 
 message RoomUser {
@@ -102,9 +104,11 @@ message DeleteRoomUserReq {
 }
 
 message GetRoomIDsOfRoomUserReq {
-  string userID = 1;
+  string workspace = 1;
+  string userID = 11;
 }
 
 message GetUserIDsOfRoomUserReq {
-  string roomID = 1;
+  string workspace = 1;
+  string roomID = 11;
 }
