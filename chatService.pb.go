@@ -191,10 +191,10 @@ var _ChatOutgoing_serviceDesc = grpc.ServiceDesc{
 // Client API for UserRoleService service
 
 type UserRoleServiceClient interface {
-	Post(ctx context.Context, in *UserRole, opts ...grpc.CallOption) (*UserRole, error)
-	GetRoleIDs(ctx context.Context, in *GetRoleIDsReq, opts ...grpc.CallOption) (*RoleIDs, error)
-	GetUserIDs(ctx context.Context, in *GetUserIDsReq, opts ...grpc.CallOption) (*UserIDs, error)
-	Delete(ctx context.Context, in *UserRole, opts ...grpc.CallOption) (*google_protobuf1.Empty, error)
+	PostUserRole(ctx context.Context, in *UserRole, opts ...grpc.CallOption) (*UserRole, error)
+	GetRoleIDsOfUserRole(ctx context.Context, in *GetRoleIDsOfUserRoleReq, opts ...grpc.CallOption) (*RoleIDs, error)
+	GetUserIDsOfUserRole(ctx context.Context, in *GetUserIDsOfUserRoleReq, opts ...grpc.CallOption) (*UserIDs, error)
+	DeleteUserRole(ctx context.Context, in *UserRole, opts ...grpc.CallOption) (*google_protobuf1.Empty, error)
 }
 
 type userRoleServiceClient struct {
@@ -205,36 +205,36 @@ func NewUserRoleServiceClient(cc *grpc.ClientConn) UserRoleServiceClient {
 	return &userRoleServiceClient{cc}
 }
 
-func (c *userRoleServiceClient) Post(ctx context.Context, in *UserRole, opts ...grpc.CallOption) (*UserRole, error) {
+func (c *userRoleServiceClient) PostUserRole(ctx context.Context, in *UserRole, opts ...grpc.CallOption) (*UserRole, error) {
 	out := new(UserRole)
-	err := grpc.Invoke(ctx, "/swagchat.protobuf.UserRoleService/Post", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/swagchat.protobuf.UserRoleService/PostUserRole", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userRoleServiceClient) GetRoleIDs(ctx context.Context, in *GetRoleIDsReq, opts ...grpc.CallOption) (*RoleIDs, error) {
+func (c *userRoleServiceClient) GetRoleIDsOfUserRole(ctx context.Context, in *GetRoleIDsOfUserRoleReq, opts ...grpc.CallOption) (*RoleIDs, error) {
 	out := new(RoleIDs)
-	err := grpc.Invoke(ctx, "/swagchat.protobuf.UserRoleService/GetRoleIDs", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/swagchat.protobuf.UserRoleService/GetRoleIDsOfUserRole", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userRoleServiceClient) GetUserIDs(ctx context.Context, in *GetUserIDsReq, opts ...grpc.CallOption) (*UserIDs, error) {
+func (c *userRoleServiceClient) GetUserIDsOfUserRole(ctx context.Context, in *GetUserIDsOfUserRoleReq, opts ...grpc.CallOption) (*UserIDs, error) {
 	out := new(UserIDs)
-	err := grpc.Invoke(ctx, "/swagchat.protobuf.UserRoleService/GetUserIDs", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/swagchat.protobuf.UserRoleService/GetUserIDsOfUserRole", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userRoleServiceClient) Delete(ctx context.Context, in *UserRole, opts ...grpc.CallOption) (*google_protobuf1.Empty, error) {
+func (c *userRoleServiceClient) DeleteUserRole(ctx context.Context, in *UserRole, opts ...grpc.CallOption) (*google_protobuf1.Empty, error) {
 	out := new(google_protobuf1.Empty)
-	err := grpc.Invoke(ctx, "/swagchat.protobuf.UserRoleService/Delete", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/swagchat.protobuf.UserRoleService/DeleteUserRole", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -244,84 +244,84 @@ func (c *userRoleServiceClient) Delete(ctx context.Context, in *UserRole, opts .
 // Server API for UserRoleService service
 
 type UserRoleServiceServer interface {
-	Post(context.Context, *UserRole) (*UserRole, error)
-	GetRoleIDs(context.Context, *GetRoleIDsReq) (*RoleIDs, error)
-	GetUserIDs(context.Context, *GetUserIDsReq) (*UserIDs, error)
-	Delete(context.Context, *UserRole) (*google_protobuf1.Empty, error)
+	PostUserRole(context.Context, *UserRole) (*UserRole, error)
+	GetRoleIDsOfUserRole(context.Context, *GetRoleIDsOfUserRoleReq) (*RoleIDs, error)
+	GetUserIDsOfUserRole(context.Context, *GetUserIDsOfUserRoleReq) (*UserIDs, error)
+	DeleteUserRole(context.Context, *UserRole) (*google_protobuf1.Empty, error)
 }
 
 func RegisterUserRoleServiceServer(s *grpc.Server, srv UserRoleServiceServer) {
 	s.RegisterService(&_UserRoleService_serviceDesc, srv)
 }
 
-func _UserRoleService_Post_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserRoleService_PostUserRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UserRole)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserRoleServiceServer).Post(ctx, in)
+		return srv.(UserRoleServiceServer).PostUserRole(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/swagchat.protobuf.UserRoleService/Post",
+		FullMethod: "/swagchat.protobuf.UserRoleService/PostUserRole",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserRoleServiceServer).Post(ctx, req.(*UserRole))
+		return srv.(UserRoleServiceServer).PostUserRole(ctx, req.(*UserRole))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserRoleService_GetRoleIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRoleIDsReq)
+func _UserRoleService_GetRoleIDsOfUserRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRoleIDsOfUserRoleReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserRoleServiceServer).GetRoleIDs(ctx, in)
+		return srv.(UserRoleServiceServer).GetRoleIDsOfUserRole(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/swagchat.protobuf.UserRoleService/GetRoleIDs",
+		FullMethod: "/swagchat.protobuf.UserRoleService/GetRoleIDsOfUserRole",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserRoleServiceServer).GetRoleIDs(ctx, req.(*GetRoleIDsReq))
+		return srv.(UserRoleServiceServer).GetRoleIDsOfUserRole(ctx, req.(*GetRoleIDsOfUserRoleReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserRoleService_GetUserIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUserIDsReq)
+func _UserRoleService_GetUserIDsOfUserRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserIDsOfUserRoleReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserRoleServiceServer).GetUserIDs(ctx, in)
+		return srv.(UserRoleServiceServer).GetUserIDsOfUserRole(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/swagchat.protobuf.UserRoleService/GetUserIDs",
+		FullMethod: "/swagchat.protobuf.UserRoleService/GetUserIDsOfUserRole",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserRoleServiceServer).GetUserIDs(ctx, req.(*GetUserIDsReq))
+		return srv.(UserRoleServiceServer).GetUserIDsOfUserRole(ctx, req.(*GetUserIDsOfUserRoleReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserRoleService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserRoleService_DeleteUserRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UserRole)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserRoleServiceServer).Delete(ctx, in)
+		return srv.(UserRoleServiceServer).DeleteUserRole(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/swagchat.protobuf.UserRoleService/Delete",
+		FullMethod: "/swagchat.protobuf.UserRoleService/DeleteUserRole",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserRoleServiceServer).Delete(ctx, req.(*UserRole))
+		return srv.(UserRoleServiceServer).DeleteUserRole(ctx, req.(*UserRole))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -331,20 +331,117 @@ var _UserRoleService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*UserRoleServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Post",
-			Handler:    _UserRoleService_Post_Handler,
+			MethodName: "PostUserRole",
+			Handler:    _UserRoleService_PostUserRole_Handler,
 		},
 		{
-			MethodName: "GetRoleIDs",
-			Handler:    _UserRoleService_GetRoleIDs_Handler,
+			MethodName: "GetRoleIDsOfUserRole",
+			Handler:    _UserRoleService_GetRoleIDsOfUserRole_Handler,
 		},
 		{
-			MethodName: "GetUserIDs",
-			Handler:    _UserRoleService_GetUserIDs_Handler,
+			MethodName: "GetUserIDsOfUserRole",
+			Handler:    _UserRoleService_GetUserIDsOfUserRole_Handler,
 		},
 		{
-			MethodName: "Delete",
-			Handler:    _UserRoleService_Delete_Handler,
+			MethodName: "DeleteUserRole",
+			Handler:    _UserRoleService_DeleteUserRole_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "chatService.proto",
+}
+
+// Client API for RoomUserService service
+
+type RoomUserServiceClient interface {
+	PostRoomUser(ctx context.Context, in *PostRoomUserReq, opts ...grpc.CallOption) (*google_protobuf1.Empty, error)
+	DeleteRoomUser(ctx context.Context, in *DeleteRoomUserReq, opts ...grpc.CallOption) (*google_protobuf1.Empty, error)
+}
+
+type roomUserServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewRoomUserServiceClient(cc *grpc.ClientConn) RoomUserServiceClient {
+	return &roomUserServiceClient{cc}
+}
+
+func (c *roomUserServiceClient) PostRoomUser(ctx context.Context, in *PostRoomUserReq, opts ...grpc.CallOption) (*google_protobuf1.Empty, error) {
+	out := new(google_protobuf1.Empty)
+	err := grpc.Invoke(ctx, "/swagchat.protobuf.RoomUserService/PostRoomUser", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *roomUserServiceClient) DeleteRoomUser(ctx context.Context, in *DeleteRoomUserReq, opts ...grpc.CallOption) (*google_protobuf1.Empty, error) {
+	out := new(google_protobuf1.Empty)
+	err := grpc.Invoke(ctx, "/swagchat.protobuf.RoomUserService/DeleteRoomUser", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for RoomUserService service
+
+type RoomUserServiceServer interface {
+	PostRoomUser(context.Context, *PostRoomUserReq) (*google_protobuf1.Empty, error)
+	DeleteRoomUser(context.Context, *DeleteRoomUserReq) (*google_protobuf1.Empty, error)
+}
+
+func RegisterRoomUserServiceServer(s *grpc.Server, srv RoomUserServiceServer) {
+	s.RegisterService(&_RoomUserService_serviceDesc, srv)
+}
+
+func _RoomUserService_PostRoomUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PostRoomUserReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoomUserServiceServer).PostRoomUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/swagchat.protobuf.RoomUserService/PostRoomUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoomUserServiceServer).PostRoomUser(ctx, req.(*PostRoomUserReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RoomUserService_DeleteRoomUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRoomUserReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoomUserServiceServer).DeleteRoomUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/swagchat.protobuf.RoomUserService/DeleteRoomUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoomUserServiceServer).DeleteRoomUser(ctx, req.(*DeleteRoomUserReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _RoomUserService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "swagchat.protobuf.RoomUserService",
+	HandlerType: (*RoomUserServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "PostRoomUser",
+			Handler:    _RoomUserService_PostRoomUser_Handler,
+		},
+		{
+			MethodName: "DeleteRoomUser",
+			Handler:    _RoomUserService_DeleteRoomUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -354,29 +451,32 @@ var _UserRoleService_serviceDesc = grpc.ServiceDesc{
 func init() { proto.RegisterFile("chatService.proto", fileDescriptor1) }
 
 var fileDescriptor1 = []byte{
-	// 369 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x92, 0x41, 0x4f, 0xc2, 0x30,
-	0x14, 0xc7, 0x45, 0x0d, 0x87, 0x4a, 0x44, 0x6a, 0x44, 0x2d, 0xc4, 0x98, 0x1d, 0x39, 0xac, 0x09,
-	0xde, 0x38, 0x0a, 0xc6, 0x70, 0x30, 0x2a, 0xc4, 0x90, 0x98, 0x78, 0xe8, 0x66, 0xe9, 0x16, 0xd9,
-	0x1e, 0xae, 0x9d, 0xc4, 0xab, 0x37, 0xcf, 0x7e, 0x34, 0xe3, 0x37, 0xf0, 0x83, 0x98, 0x76, 0x9d,
-	0x23, 0x71, 0x70, 0xf1, 0xb2, 0xb4, 0xfd, 0xbf, 0xfd, 0x7e, 0x6f, 0xaf, 0x43, 0x0d, 0x3f, 0x60,
-	0x6a, 0xcc, 0x93, 0x97, 0xd0, 0xe7, 0xee, 0x3c, 0x01, 0x05, 0xb8, 0x21, 0x17, 0x4c, 0xe8, 0xe3,
-	0x6c, 0xef, 0xa5, 0x53, 0xd2, 0x16, 0x00, 0x62, 0xc6, 0x29, 0x9b, 0x87, 0x94, 0xc5, 0x31, 0x28,
-	0xa6, 0x42, 0x88, 0x65, 0x56, 0x40, 0x5a, 0x36, 0xcd, 0xcb, 0x29, 0x8f, 0xe6, 0xea, 0xd5, 0x86,
-	0x46, 0x70, 0xc5, 0xa5, 0x64, 0xc2, 0x0a, 0xba, 0x63, 0x54, 0xeb, 0x07, 0x4c, 0x0d, 0x63, 0x1f,
-	0xa2, 0x30, 0x16, 0xb8, 0x8f, 0x76, 0x6e, 0x40, 0xe6, 0x45, 0x98, 0xb8, 0x7f, 0x1a, 0x70, 0x6d,
-	0x46, 0x9a, 0x6e, 0xe6, 0x2a, 0x92, 0x0b, 0xed, 0x72, 0x36, 0xba, 0x5f, 0x95, 0x8c, 0x7a, 0x9d,
-	0x2a, 0x01, 0x9a, 0xfa, 0x80, 0xea, 0x9a, 0x3a, 0xe1, 0x5e, 0x00, 0xf0, 0x34, 0x02, 0x88, 0xf0,
-	0x61, 0x09, 0x59, 0x07, 0x2b, 0xb1, 0xc7, 0x6f, 0x9f, 0xdf, 0x1f, 0x9b, 0xfb, 0xce, 0x2e, 0x5d,
-	0x64, 0x18, 0x49, 0x13, 0x80, 0xa8, 0x57, 0xe9, 0xe0, 0x29, 0xc2, 0x4b, 0xf8, 0xff, 0xf4, 0xde,
-	0x36, 0x92, 0xa6, 0xd3, 0x28, 0x24, 0x51, 0xf6, 0x4a, 0xaf, 0xd2, 0xe9, 0xbe, 0x6f, 0xa1, 0xfa,
-	0x9d, 0xe4, 0xc9, 0x08, 0x66, 0xdc, 0xde, 0x13, 0x9e, 0xa0, 0x6d, 0xed, 0xc6, 0xad, 0x12, 0x5b,
-	0x5e, 0x4b, 0xd6, 0x85, 0xce, 0x81, 0x71, 0xd6, 0x1d, 0x44, 0x53, 0x7b, 0x24, 0xf5, 0x47, 0x3d,
-	0x22, 0x74, 0xc9, 0x95, 0xde, 0x0e, 0x07, 0x12, 0x9f, 0x96, 0x10, 0x8a, 0x78, 0xc4, 0x9f, 0x09,
-	0x29, 0x1d, 0xa8, 0x89, 0x9d, 0x23, 0xa3, 0xc0, 0x78, 0xaf, 0x50, 0xd0, 0x44, 0x3f, 0xad, 0x45,
-	0xf7, 0xb2, 0xc6, 0x62, 0xe3, 0x55, 0x16, 0x1b, 0x97, 0x5a, 0xf4, 0x4a, 0xe2, 0x5b, 0x54, 0x1d,
-	0xf0, 0x19, 0x57, 0x7c, 0xfd, 0x98, 0x56, 0xdd, 0x0a, 0x36, 0xe0, 0x5a, 0x67, 0x69, 0x42, 0xe7,
-	0x27, 0xf7, 0x6d, 0x11, 0xaa, 0x20, 0xf5, 0x5c, 0x1f, 0x22, 0x9a, 0x43, 0x7f, 0xff, 0x7b, 0xaf,
-	0x6a, 0x56, 0x67, 0x3f, 0x01, 0x00, 0x00, 0xff, 0xff, 0x82, 0xb5, 0x0c, 0xaf, 0x55, 0x03, 0x00,
-	0x00,
+	// 428 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x94, 0x41, 0xcb, 0xd3, 0x30,
+	0x18, 0xc7, 0xad, 0x82, 0x87, 0x38, 0x56, 0x17, 0x75, 0x6a, 0x37, 0x3c, 0x14, 0x4f, 0x3d, 0x34,
+	0x50, 0x6f, 0x3b, 0xba, 0x89, 0xec, 0x20, 0x93, 0x0d, 0x11, 0x05, 0x91, 0xb4, 0x64, 0x6d, 0x71,
+	0xed, 0x33, 0x9b, 0xd4, 0xe9, 0xd5, 0xaf, 0xe0, 0x27, 0xf2, 0x33, 0x88, 0xe0, 0x07, 0xf0, 0x83,
+	0xbc, 0x24, 0x4d, 0xda, 0xbd, 0x2c, 0x1d, 0x83, 0xf7, 0x32, 0x92, 0xe7, 0xff, 0xcf, 0xff, 0x97,
+	0x27, 0xcf, 0x28, 0x1a, 0x25, 0x19, 0x15, 0x1b, 0x56, 0x7d, 0xcb, 0x13, 0x16, 0xee, 0x2b, 0x10,
+	0x80, 0x47, 0xfc, 0x40, 0x53, 0x59, 0x6e, 0xf6, 0x71, 0xbd, 0xf5, 0xa6, 0x29, 0x40, 0xba, 0x63,
+	0x84, 0xee, 0x73, 0x42, 0xcb, 0x12, 0x04, 0x15, 0x39, 0x94, 0xbc, 0x31, 0x78, 0x13, 0xad, 0x1a,
+	0x3b, 0x61, 0xc5, 0x5e, 0xfc, 0xd0, 0xa2, 0x02, 0xbc, 0x61, 0x9c, 0xd3, 0x54, 0x03, 0xa2, 0x0d,
+	0x1a, 0xcc, 0x33, 0x2a, 0x96, 0x65, 0x02, 0x45, 0x5e, 0xa6, 0x78, 0x8e, 0xee, 0xbd, 0x05, 0x6e,
+	0x4c, 0xd8, 0x0b, 0x4f, 0x2e, 0x10, 0x6a, 0xcd, 0x1b, 0x87, 0x0d, 0xab, 0x53, 0x5e, 0x49, 0x96,
+	0x7f, 0x2b, 0xfa, 0xeb, 0x34, 0xa9, 0xab, 0x5a, 0xa4, 0x20, 0x53, 0x3f, 0x21, 0x57, 0xa6, 0xbe,
+	0x67, 0x71, 0x06, 0xf0, 0x65, 0x0d, 0x50, 0xe0, 0xc7, 0x96, 0x64, 0x29, 0xf4, 0xc6, 0x3e, 0xfd,
+	0xf9, 0xe7, 0xff, 0xaf, 0xdb, 0x0f, 0xfc, 0x21, 0x39, 0x34, 0x31, 0x9c, 0x54, 0x00, 0xc5, 0xcc,
+	0x09, 0xf0, 0x16, 0xe1, 0xa3, 0xf8, 0x9b, 0xdc, 0x7d, 0xaa, 0x20, 0x63, 0x7f, 0xd4, 0x41, 0x8a,
+	0xe6, 0xc8, 0xcc, 0x09, 0xa2, 0xdf, 0x77, 0x90, 0xfb, 0x8e, 0xb3, 0x6a, 0x0d, 0x3b, 0xa6, 0xe7,
+	0x84, 0x3f, 0xa3, 0x81, 0x64, 0x9b, 0x32, 0x9e, 0x58, 0xa8, 0x46, 0xf4, 0xce, 0x89, 0xfe, 0x23,
+	0xc5, 0x76, 0x7d, 0x44, 0x6a, 0x5d, 0xe2, 0xb2, 0xb9, 0xef, 0xe8, 0xe1, 0x6b, 0x26, 0xe4, 0x76,
+	0xb9, 0xe0, 0xab, 0x6d, 0x0b, 0x0a, 0x2c, 0x59, 0x36, 0xe3, 0x9a, 0x7d, 0xf5, 0x3c, 0xeb, 0x63,
+	0x2b, 0xa3, 0xff, 0x44, 0x61, 0x31, 0xbe, 0xdf, 0x61, 0x49, 0x25, 0x7f, 0x35, 0x59, 0xe6, 0x5c,
+	0x44, 0x3e, 0x31, 0xf6, 0x91, 0xb5, 0xd1, 0x4a, 0x96, 0x2b, 0x8e, 0x3f, 0xa0, 0xe1, 0x82, 0xed,
+	0x98, 0x60, 0x97, 0x3d, 0x6b, 0xdf, 0x34, 0xb1, 0x02, 0x0c, 0x82, 0xa3, 0x17, 0x8d, 0xfe, 0x39,
+	0xc8, 0x95, 0xff, 0x33, 0x79, 0xd8, 0xcc, 0x90, 0x36, 0x33, 0x34, 0x65, 0xec, 0x5b, 0x60, 0xc7,
+	0x06, 0xd9, 0x58, 0x1f, 0xb3, 0x9b, 0x62, 0xa5, 0xdd, 0x6a, 0x8a, 0xb1, 0xe9, 0xa8, 0x85, 0x3c,
+	0xb7, 0x40, 0xae, 0x5b, 0xce, 0x61, 0xba, 0xd6, 0x5a, 0xcc, 0xcb, 0x67, 0x1f, 0xa7, 0x69, 0x2e,
+	0xb2, 0x3a, 0x0e, 0x13, 0x28, 0x88, 0x49, 0x6f, 0x3f, 0x05, 0xf1, 0x5d, 0xb5, 0x7a, 0x71, 0x15,
+	0x00, 0x00, 0xff, 0xff, 0xdf, 0xa3, 0xef, 0x51, 0x68, 0x04, 0x00, 0x00,
 }

@@ -54,7 +54,7 @@ func request_ChatOutgoing_PostWebhookMessage_0(ctx context.Context, marshaler ru
 
 }
 
-func request_UserRoleService_Post_0(ctx context.Context, marshaler runtime.Marshaler, client UserRoleServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_UserRoleService_PostUserRole_0(ctx context.Context, marshaler runtime.Marshaler, client UserRoleServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq UserRole
 	var metadata runtime.ServerMetadata
 
@@ -62,58 +62,88 @@ func request_UserRoleService_Post_0(ctx context.Context, marshaler runtime.Marsh
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.Post(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.PostUserRole(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
 var (
-	filter_UserRoleService_GetRoleIDs_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_UserRoleService_GetRoleIDsOfUserRole_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_UserRoleService_GetRoleIDs_0(ctx context.Context, marshaler runtime.Marshaler, client UserRoleServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRoleIDsReq
+func request_UserRoleService_GetRoleIDsOfUserRole_0(ctx context.Context, marshaler runtime.Marshaler, client UserRoleServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetRoleIDsOfUserRoleReq
 	var metadata runtime.ServerMetadata
 
-	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_UserRoleService_GetRoleIDs_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_UserRoleService_GetRoleIDsOfUserRole_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GetRoleIDs(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetRoleIDsOfUserRole(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
 var (
-	filter_UserRoleService_GetUserIDs_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_UserRoleService_GetUserIDsOfUserRole_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_UserRoleService_GetUserIDs_0(ctx context.Context, marshaler runtime.Marshaler, client UserRoleServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetUserIDsReq
+func request_UserRoleService_GetUserIDsOfUserRole_0(ctx context.Context, marshaler runtime.Marshaler, client UserRoleServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetUserIDsOfUserRoleReq
 	var metadata runtime.ServerMetadata
 
-	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_UserRoleService_GetUserIDs_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_UserRoleService_GetUserIDsOfUserRole_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GetUserIDs(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetUserIDsOfUserRole(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
 var (
-	filter_UserRoleService_Delete_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_UserRoleService_DeleteUserRole_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_UserRoleService_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client UserRoleServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_UserRoleService_DeleteUserRole_0(ctx context.Context, marshaler runtime.Marshaler, client UserRoleServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq UserRole
 	var metadata runtime.ServerMetadata
 
-	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_UserRoleService_Delete_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_UserRoleService_DeleteUserRole_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.Delete(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.DeleteUserRole(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func request_RoomUserService_PostRoomUser_0(ctx context.Context, marshaler runtime.Marshaler, client RoomUserServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq PostRoomUserReq
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.PostRoomUser(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+var (
+	filter_RoomUserService_DeleteRoomUser_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_RoomUserService_DeleteRoomUser_0(ctx context.Context, marshaler runtime.Marshaler, client RoomUserServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeleteRoomUserReq
+	var metadata runtime.ServerMetadata
+
+	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_RoomUserService_DeleteRoomUser_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.DeleteRoomUser(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
@@ -267,7 +297,7 @@ func RegisterUserRoleServiceHandler(ctx context.Context, mux *runtime.ServeMux, 
 // "UserRoleServiceClient" to call the correct interceptors.
 func RegisterUserRoleServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client UserRoleServiceClient) error {
 
-	mux.Handle("POST", pattern_UserRoleService_Post_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_UserRoleService_PostUserRole_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		if cn, ok := w.(http.CloseNotifier); ok {
@@ -285,18 +315,18 @@ func RegisterUserRoleServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_UserRoleService_Post_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_UserRoleService_PostUserRole_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_UserRoleService_Post_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_UserRoleService_PostUserRole_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_UserRoleService_GetRoleIDs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_UserRoleService_GetRoleIDsOfUserRole_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		if cn, ok := w.(http.CloseNotifier); ok {
@@ -314,18 +344,18 @@ func RegisterUserRoleServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_UserRoleService_GetRoleIDs_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_UserRoleService_GetRoleIDsOfUserRole_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_UserRoleService_GetRoleIDs_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_UserRoleService_GetRoleIDsOfUserRole_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_UserRoleService_GetUserIDs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_UserRoleService_GetUserIDsOfUserRole_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		if cn, ok := w.(http.CloseNotifier); ok {
@@ -343,18 +373,18 @@ func RegisterUserRoleServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_UserRoleService_GetUserIDs_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_UserRoleService_GetUserIDsOfUserRole_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_UserRoleService_GetUserIDs_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_UserRoleService_GetUserIDsOfUserRole_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_UserRoleService_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_UserRoleService_DeleteUserRole_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		if cn, ok := w.(http.CloseNotifier); ok {
@@ -372,14 +402,14 @@ func RegisterUserRoleServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_UserRoleService_Delete_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_UserRoleService_DeleteUserRole_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_UserRoleService_Delete_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_UserRoleService_DeleteUserRole_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -387,21 +417,132 @@ func RegisterUserRoleServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 }
 
 var (
-	pattern_UserRoleService_Post_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"userRoles"}, ""))
+	pattern_UserRoleService_PostUserRole_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"userRoles"}, ""))
 
-	pattern_UserRoleService_GetRoleIDs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"userRoles", "roles"}, ""))
+	pattern_UserRoleService_GetRoleIDsOfUserRole_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"userRoles", "roles"}, ""))
 
-	pattern_UserRoleService_GetUserIDs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"userRoles", "users"}, ""))
+	pattern_UserRoleService_GetUserIDsOfUserRole_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"userRoles", "users"}, ""))
 
-	pattern_UserRoleService_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"userRoles"}, ""))
+	pattern_UserRoleService_DeleteUserRole_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"userRoles"}, ""))
 )
 
 var (
-	forward_UserRoleService_Post_0 = runtime.ForwardResponseMessage
+	forward_UserRoleService_PostUserRole_0 = runtime.ForwardResponseMessage
 
-	forward_UserRoleService_GetRoleIDs_0 = runtime.ForwardResponseMessage
+	forward_UserRoleService_GetRoleIDsOfUserRole_0 = runtime.ForwardResponseMessage
 
-	forward_UserRoleService_GetUserIDs_0 = runtime.ForwardResponseMessage
+	forward_UserRoleService_GetUserIDsOfUserRole_0 = runtime.ForwardResponseMessage
 
-	forward_UserRoleService_Delete_0 = runtime.ForwardResponseMessage
+	forward_UserRoleService_DeleteUserRole_0 = runtime.ForwardResponseMessage
+)
+
+// RegisterRoomUserServiceHandlerFromEndpoint is same as RegisterRoomUserServiceHandler but
+// automatically dials to "endpoint" and closes the connection when "ctx" gets done.
+func RegisterRoomUserServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+	conn, err := grpc.Dial(endpoint, opts...)
+	if err != nil {
+		return err
+	}
+	defer func() {
+		if err != nil {
+			if cerr := conn.Close(); cerr != nil {
+				grpclog.Printf("Failed to close conn to %s: %v", endpoint, cerr)
+			}
+			return
+		}
+		go func() {
+			<-ctx.Done()
+			if cerr := conn.Close(); cerr != nil {
+				grpclog.Printf("Failed to close conn to %s: %v", endpoint, cerr)
+			}
+		}()
+	}()
+
+	return RegisterRoomUserServiceHandler(ctx, mux, conn)
+}
+
+// RegisterRoomUserServiceHandler registers the http handlers for service RoomUserService to "mux".
+// The handlers forward requests to the grpc endpoint over "conn".
+func RegisterRoomUserServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterRoomUserServiceHandlerClient(ctx, mux, NewRoomUserServiceClient(conn))
+}
+
+// RegisterRoomUserServiceHandler registers the http handlers for service RoomUserService to "mux".
+// The handlers forward requests to the grpc endpoint over the given implementation of "RoomUserServiceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "RoomUserServiceClient"
+// doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
+// "RoomUserServiceClient" to call the correct interceptors.
+func RegisterRoomUserServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client RoomUserServiceClient) error {
+
+	mux.Handle("POST", pattern_RoomUserService_PostRoomUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		if cn, ok := w.(http.CloseNotifier); ok {
+			go func(done <-chan struct{}, closed <-chan bool) {
+				select {
+				case <-done:
+				case <-closed:
+					cancel()
+				}
+			}(ctx.Done(), cn.CloseNotify())
+		}
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_RoomUserService_PostRoomUser_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_RoomUserService_PostRoomUser_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("DELETE", pattern_RoomUserService_DeleteRoomUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		if cn, ok := w.(http.CloseNotifier); ok {
+			go func(done <-chan struct{}, closed <-chan bool) {
+				select {
+				case <-done:
+				case <-closed:
+					cancel()
+				}
+			}(ctx.Done(), cn.CloseNotify())
+		}
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_RoomUserService_DeleteRoomUser_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_RoomUserService_DeleteRoomUser_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	return nil
+}
+
+var (
+	pattern_RoomUserService_PostRoomUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"roomUsers"}, ""))
+
+	pattern_RoomUserService_DeleteRoomUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"roomUsers"}, ""))
+)
+
+var (
+	forward_RoomUserService_PostRoomUser_0 = runtime.ForwardResponseMessage
+
+	forward_RoomUserService_DeleteRoomUser_0 = runtime.ForwardResponseMessage
 )

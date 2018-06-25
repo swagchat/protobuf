@@ -51,24 +51,60 @@ message MessagePayload {
   int32 height = 16;
 }
 
-message UserRole {
-  // @inject_tag: db:"user_id"
-  string userID = 1;
-  // @inject_tag: db:"role_id"
-  int32 roleID = 2;
-}
-
-message GetUserIDsReq {
-  int32 roleID = 1;
+message RoomIDs {
+  repeated string roomIDs = 1;
 }
 
 message UserIDs {
   repeated string userIDs = 1;
 }
 
-message GetRoleIDsReq {
-  string userID = 1;
-}
 message RoleIDs {
   repeated int32 roleIDs = 1;
+}
+
+message UserRole {
+  string workspace = 1;
+  // @inject_tag: db:"user_id"
+  string userID = 11;
+  // @inject_tag: db:"role_id"
+  int32 roleID = 12;
+}
+
+message GetUserIDsOfUserRoleReq {
+  int32 roleID = 1;
+}
+
+message GetRoleIDsOfUserRoleReq {
+  string userID = 1;
+}
+
+message RoomUser {
+  string workspace = 1;
+  // @inject_tag: db:"room_id"
+  string roomID = 11;
+  // @inject_tag: db:"user_id"
+  string userID = 12;
+  // @inject_tag: db:"unread_count"
+  int32 unreadCount = 13;
+}
+
+message PostRoomUserReq {
+  string workspace = 1;
+  string roomID = 11;
+  repeated string userIDs = 12;
+}
+
+message DeleteRoomUserReq {
+  string workspace = 1;
+  string roomID = 11;
+  repeated string userIDs = 12;
+}
+
+message GetRoomIDsOfRoomUserReq {
+  string userID = 1;
+}
+
+message GetUserIDsOfRoomUserReq {
+  string roomID = 1;
 }

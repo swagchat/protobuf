@@ -27,28 +27,55 @@ service ChatOutgoing {
 }
 
 service UserRoleService {
-  rpc Post (UserRole) returns (UserRole) {
+  rpc PostUserRole (UserRole) returns (UserRole) {
     option (google.api.http) = {
       post: "/userRoles"
       body: "*"
     };
   }
 
-  rpc GetRoleIDs (GetRoleIDsReq) returns (RoleIDs) {
+  rpc GetRoleIDsOfUserRole (GetRoleIDsOfUserRoleReq) returns (RoleIDs) {
     option (google.api.http) = {
       get: "/userRoles/roles"
     };
   }
   
-  rpc GetUserIDs (GetUserIDsReq) returns (UserIDs) {
+  rpc GetUserIDsOfUserRole (GetUserIDsOfUserRoleReq) returns (UserIDs) {
     option (google.api.http) = {
       get: "/userRoles/users"
     };
   }
 
-  rpc Delete (UserRole) returns (google.protobuf.Empty) {
+  rpc DeleteUserRole (UserRole) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       delete: "/userRoles"
+    };
+  }
+}
+
+service RoomUserService {
+  rpc PostRoomUser (PostRoomUserReq) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/roomUsers"
+      body: "*"
+    };
+  }
+
+  // rpc GetRoleIDsOfRoomUser (GetRoomIDsOfRoomUserReq) returns (RoleIDs) {
+  //   option (google.api.http) = {
+  //     get: "/roomUsers/roles"
+  //   };
+  // }
+  
+  // rpc GetUserIDsOfRoomUser (GetUserIDsOfRoomUserReq) returns (UserIDs) {
+  //   option (google.api.http) = {
+  //     get: "/roomUsers/users"
+  //   };
+  // }
+
+  rpc DeleteRoomUser (DeleteRoomUserReq) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/roomUsers"
     };
   }
 }
