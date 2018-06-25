@@ -93,7 +93,7 @@ message RoomUser {
   // @inject_tag: db:"unread_count"
   int32 unreadCount = 13;
   // @inject_tag: db:"display"
-  int32 display = 14;
+  bool display = 14;
 }
 
 message PostRoomUserReq {
