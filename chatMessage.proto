@@ -78,6 +78,7 @@ message PostUserRoleReq {
 
 message GetUserIDsOfUserRoleReq {
   string workspace = 1;
+  string roomID = 11;
   int32 roleID = 12;
 }
 
