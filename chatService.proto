@@ -67,11 +67,11 @@ service RoomUserService {
   //   };
   // }
   
-  // rpc GetUserIDsOfRoomUser (GetUserIDsOfRoomUserReq) returns (UserIDs) {
-  //   option (google.api.http) = {
-  //     get: "/roomUsers/users"
-  //   };
-  // }
+  rpc GetUserIDsOfRoomUser (GetUserIDsOfRoomUserReq) returns (UserIDs) {
+    option (google.api.http) = {
+      get: "/roomUsers/users"
+    };
+  }
 
   rpc DeleteRoomUser (DeleteRoomUserReq) returns (google.protobuf.Empty) {
     option (google.api.http) = {
