@@ -3,19 +3,130 @@ syntax = "proto3";
 package swagchat.protobuf;
 option go_package = "github.com/swagchat/protobuf";
 
-message Room{
-  string workspace = 1;
-  string roomId = 11;
+message User {
+  uint64 id = 11;
   string userId = 12;
   string name = 13;
-  string pictureURL = 14;
-  string type = 15;
-  string WebhookToken = 16;
-  int64 created = 30;
-  int64 modified = 31;
+  string pictureUrl = 14;
+  string informationUrl = 15;
+  uint64 unreadCount = 16;
+  bytes metaData = 17;
+  bool public = 18;
+  bool canBlock = 19;
+  string lang = 20;
+  string accessToken = 21;
+  string lastAccessRoomId = 22;
+  int64 lastAccessed = 23;
+  int64 created = 31;
+  int64 modified = 32;
+  int64 deleted = 33;
+  repeated int32 roles = 40;
+  repeated RoomForUser rooms = 41;
+  repeated Device devices = 42;
+  repeated string blocks = 43;
 }
 
-message Messages{
+message CreateUserRequest {
+  string workspace = 1;
+  string userId = 12;
+  string name = 13;
+  string pictureUrl = 14;
+  string informationUrl = 15;
+  bytes metaData = 17;
+  bool public = 18;
+  bool canBlock = 19;
+  string lang = 20;
+}
+
+message GetUserRequest {
+  string workspace = 1;
+  string userId = 12;
+}
+
+message Device {
+  string workspace = 1;
+  string userID = 11;
+  int32 platform = 12;
+  string token = 13;
+  string notificationDeviceID = 14;
+}
+
+enum RoomType {
+  NONE = 0;
+  OneOnOne = 1;
+  PrivateRoom = 2;
+  PublicRoom = 3;
+  NoticeRoom = 4;
+  RoomTypeEnd = 5;
+}
+
+message RoomForUser {
+  string roomID = 1;
+  string userID = 2;
+  string name = 3;
+  string pictureURL = 4;
+  string informationURL = 5;
+  bytes metaData = 6;
+  RoomType type = 7;
+  string lastMessage = 8;
+  int64 lastMessageUpdated = 9;
+  bool canLeft = 10;
+  int64 created = 11;
+  int64 modified = 12;
+  repeated UserForRoom users = 13;
+  int64 ruUnreadCount = 14;
+}
+
+message UserForRoom {
+  string roomID = 1;
+  string userID = 2;
+  string name = 3;
+  string pictureURL = 4;
+  string informationURL = 5;
+  bytes metaData = 6;
+  bool canBlock = 7;
+  int64 lastAccessed = 8;
+  int64 created = 9;
+  int64 modified = 10;
+  bool ruDisplay = 11;
+}
+
+enum SpeechMode {
+	SpeechModeNone = 0;
+	SpeechModeWakeupWebToWeb = 1;
+	SpeechModeWakeupWebToCloud = 2;
+	SpeechModeWakeupCloudToCloud = 3;
+	SpeechModeAlways = 4;
+	SpeechModeManual = 5;
+	SpeechModeEnd = 6;
+}
+
+message Room {
+  string workspace = 1;
+  uint64 id = 11;
+  string roomId = 12;
+  string userId = 13;
+  string name = 14;
+  string pictureUrl = 15;
+  string informationUrl = 16;
+  bytes MetaData = 17;
+  string AvailableMessageTypes = 18;
+  RoomType type = 19;
+  string WebhookToken = 20;
+  string lastMessage = 21;
+  int64 lastMessageUpdated = 22;
+  int64 messageCount = 23;
+  string notificationTopicId = 24;
+  bool canLeft = 25;
+  SpeechMode  speechMode = 26;
+  int64 created = 30;
+  int64 modified = 31;
+  int64 deleted = 32;
+  repeated UserForRoom users = 40;
+  repeated string userIds = 41;
+}
+
+message Messages {
   int64 allCount = 1;
   int32 limit = 2;
   int32 offset = 3;
@@ -23,7 +134,7 @@ message Messages{
   repeated Message messages = 5;
 }
 
-message Message{
+message Message {
   string workspace = 1;
   string endpoint = 2;
   string authorization = 3;

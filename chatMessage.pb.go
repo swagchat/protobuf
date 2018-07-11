@@ -9,6 +9,12 @@ It is generated from these files:
 	chatService.proto
 
 It has these top-level messages:
+	User
+	CreateUserRequest
+	GetUserRequest
+	Device
+	RoomForUser
+	UserForRoom
 	Room
 	Messages
 	Message
@@ -43,28 +49,653 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
+type RoomType int32
+
+const (
+	RoomType_NONE        RoomType = 0
+	RoomType_OneOnOne    RoomType = 1
+	RoomType_PrivateRoom RoomType = 2
+	RoomType_PublicRoom  RoomType = 3
+	RoomType_NoticeRoom  RoomType = 4
+	RoomType_RoomTypeEnd RoomType = 5
+)
+
+var RoomType_name = map[int32]string{
+	0: "NONE",
+	1: "OneOnOne",
+	2: "PrivateRoom",
+	3: "PublicRoom",
+	4: "NoticeRoom",
+	5: "RoomTypeEnd",
+}
+var RoomType_value = map[string]int32{
+	"NONE":        0,
+	"OneOnOne":    1,
+	"PrivateRoom": 2,
+	"PublicRoom":  3,
+	"NoticeRoom":  4,
+	"RoomTypeEnd": 5,
+}
+
+func (x RoomType) String() string {
+	return proto.EnumName(RoomType_name, int32(x))
+}
+func (RoomType) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
+
+type SpeechMode int32
+
+const (
+	SpeechMode_SpeechModeNone               SpeechMode = 0
+	SpeechMode_SpeechModeWakeupWebToWeb     SpeechMode = 1
+	SpeechMode_SpeechModeWakeupWebToCloud   SpeechMode = 2
+	SpeechMode_SpeechModeWakeupCloudToCloud SpeechMode = 3
+	SpeechMode_SpeechModeAlways             SpeechMode = 4
+	SpeechMode_SpeechModeManual             SpeechMode = 5
+	SpeechMode_SpeechModeEnd                SpeechMode = 6
+)
+
+var SpeechMode_name = map[int32]string{
+	0: "SpeechModeNone",
+	1: "SpeechModeWakeupWebToWeb",
+	2: "SpeechModeWakeupWebToCloud",
+	3: "SpeechModeWakeupCloudToCloud",
+	4: "SpeechModeAlways",
+	5: "SpeechModeManual",
+	6: "SpeechModeEnd",
+}
+var SpeechMode_value = map[string]int32{
+	"SpeechModeNone":               0,
+	"SpeechModeWakeupWebToWeb":     1,
+	"SpeechModeWakeupWebToCloud":   2,
+	"SpeechModeWakeupCloudToCloud": 3,
+	"SpeechModeAlways":             4,
+	"SpeechModeManual":             5,
+	"SpeechModeEnd":                6,
+}
+
+func (x SpeechMode) String() string {
+	return proto.EnumName(SpeechMode_name, int32(x))
+}
+func (SpeechMode) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+
+type User struct {
+	Id               uint64         `protobuf:"varint,11,opt,name=id" json:"id,omitempty"`
+	UserId           string         `protobuf:"bytes,12,opt,name=userId" json:"userId,omitempty"`
+	Name             string         `protobuf:"bytes,13,opt,name=name" json:"name,omitempty"`
+	PictureUrl       string         `protobuf:"bytes,14,opt,name=pictureUrl" json:"pictureUrl,omitempty"`
+	InformationUrl   string         `protobuf:"bytes,15,opt,name=informationUrl" json:"informationUrl,omitempty"`
+	UnreadCount      uint64         `protobuf:"varint,16,opt,name=unreadCount" json:"unreadCount,omitempty"`
+	MetaData         []byte         `protobuf:"bytes,17,opt,name=metaData,proto3" json:"metaData,omitempty"`
+	Public           bool           `protobuf:"varint,18,opt,name=public" json:"public,omitempty"`
+	CanBlock         bool           `protobuf:"varint,19,opt,name=canBlock" json:"canBlock,omitempty"`
+	Lang             string         `protobuf:"bytes,20,opt,name=lang" json:"lang,omitempty"`
+	AccessToken      string         `protobuf:"bytes,21,opt,name=accessToken" json:"accessToken,omitempty"`
+	LastAccessRoomId string         `protobuf:"bytes,22,opt,name=lastAccessRoomId" json:"lastAccessRoomId,omitempty"`
+	LastAccessed     int64          `protobuf:"varint,23,opt,name=lastAccessed" json:"lastAccessed,omitempty"`
+	Created          int64          `protobuf:"varint,31,opt,name=created" json:"created,omitempty"`
+	Modified         int64          `protobuf:"varint,32,opt,name=modified" json:"modified,omitempty"`
+	Deleted          int64          `protobuf:"varint,33,opt,name=deleted" json:"deleted,omitempty"`
+	Roles            []int32        `protobuf:"varint,40,rep,packed,name=roles" json:"roles,omitempty"`
+	Rooms            []*RoomForUser `protobuf:"bytes,41,rep,name=rooms" json:"rooms,omitempty"`
+	Devices          []*Device      `protobuf:"bytes,42,rep,name=devices" json:"devices,omitempty"`
+	Blocks           []string       `protobuf:"bytes,43,rep,name=blocks" json:"blocks,omitempty"`
+}
+
+func (m *User) Reset()                    { *m = User{} }
+func (m *User) String() string            { return proto.CompactTextString(m) }
+func (*User) ProtoMessage()               {}
+func (*User) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
+
+func (m *User) GetId() uint64 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+func (m *User) GetUserId() string {
+	if m != nil {
+		return m.UserId
+	}
+	return ""
+}
+
+func (m *User) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *User) GetPictureUrl() string {
+	if m != nil {
+		return m.PictureUrl
+	}
+	return ""
+}
+
+func (m *User) GetInformationUrl() string {
+	if m != nil {
+		return m.InformationUrl
+	}
+	return ""
+}
+
+func (m *User) GetUnreadCount() uint64 {
+	if m != nil {
+		return m.UnreadCount
+	}
+	return 0
+}
+
+func (m *User) GetMetaData() []byte {
+	if m != nil {
+		return m.MetaData
+	}
+	return nil
+}
+
+func (m *User) GetPublic() bool {
+	if m != nil {
+		return m.Public
+	}
+	return false
+}
+
+func (m *User) GetCanBlock() bool {
+	if m != nil {
+		return m.CanBlock
+	}
+	return false
+}
+
+func (m *User) GetLang() string {
+	if m != nil {
+		return m.Lang
+	}
+	return ""
+}
+
+func (m *User) GetAccessToken() string {
+	if m != nil {
+		return m.AccessToken
+	}
+	return ""
+}
+
+func (m *User) GetLastAccessRoomId() string {
+	if m != nil {
+		return m.LastAccessRoomId
+	}
+	return ""
+}
+
+func (m *User) GetLastAccessed() int64 {
+	if m != nil {
+		return m.LastAccessed
+	}
+	return 0
+}
+
+func (m *User) GetCreated() int64 {
+	if m != nil {
+		return m.Created
+	}
+	return 0
+}
+
+func (m *User) GetModified() int64 {
+	if m != nil {
+		return m.Modified
+	}
+	return 0
+}
+
+func (m *User) GetDeleted() int64 {
+	if m != nil {
+		return m.Deleted
+	}
+	return 0
+}
+
+func (m *User) GetRoles() []int32 {
+	if m != nil {
+		return m.Roles
+	}
+	return nil
+}
+
+func (m *User) GetRooms() []*RoomForUser {
+	if m != nil {
+		return m.Rooms
+	}
+	return nil
+}
+
+func (m *User) GetDevices() []*Device {
+	if m != nil {
+		return m.Devices
+	}
+	return nil
+}
+
+func (m *User) GetBlocks() []string {
+	if m != nil {
+		return m.Blocks
+	}
+	return nil
+}
+
+type CreateUserRequest struct {
+	Workspace      string `protobuf:"bytes,1,opt,name=workspace" json:"workspace,omitempty"`
+	UserId         string `protobuf:"bytes,12,opt,name=userId" json:"userId,omitempty"`
+	Name           string `protobuf:"bytes,13,opt,name=name" json:"name,omitempty"`
+	PictureUrl     string `protobuf:"bytes,14,opt,name=pictureUrl" json:"pictureUrl,omitempty"`
+	InformationUrl string `protobuf:"bytes,15,opt,name=informationUrl" json:"informationUrl,omitempty"`
+	MetaData       []byte `protobuf:"bytes,17,opt,name=metaData,proto3" json:"metaData,omitempty"`
+	Public         bool   `protobuf:"varint,18,opt,name=public" json:"public,omitempty"`
+	CanBlock       bool   `protobuf:"varint,19,opt,name=canBlock" json:"canBlock,omitempty"`
+	Lang           string `protobuf:"bytes,20,opt,name=lang" json:"lang,omitempty"`
+}
+
+func (m *CreateUserRequest) Reset()                    { *m = CreateUserRequest{} }
+func (m *CreateUserRequest) String() string            { return proto.CompactTextString(m) }
+func (*CreateUserRequest) ProtoMessage()               {}
+func (*CreateUserRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+
+func (m *CreateUserRequest) GetWorkspace() string {
+	if m != nil {
+		return m.Workspace
+	}
+	return ""
+}
+
+func (m *CreateUserRequest) GetUserId() string {
+	if m != nil {
+		return m.UserId
+	}
+	return ""
+}
+
+func (m *CreateUserRequest) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *CreateUserRequest) GetPictureUrl() string {
+	if m != nil {
+		return m.PictureUrl
+	}
+	return ""
+}
+
+func (m *CreateUserRequest) GetInformationUrl() string {
+	if m != nil {
+		return m.InformationUrl
+	}
+	return ""
+}
+
+func (m *CreateUserRequest) GetMetaData() []byte {
+	if m != nil {
+		return m.MetaData
+	}
+	return nil
+}
+
+func (m *CreateUserRequest) GetPublic() bool {
+	if m != nil {
+		return m.Public
+	}
+	return false
+}
+
+func (m *CreateUserRequest) GetCanBlock() bool {
+	if m != nil {
+		return m.CanBlock
+	}
+	return false
+}
+
+func (m *CreateUserRequest) GetLang() string {
+	if m != nil {
+		return m.Lang
+	}
+	return ""
+}
+
+type GetUserRequest struct {
+	Workspace string `protobuf:"bytes,1,opt,name=workspace" json:"workspace,omitempty"`
+	UserId    string `protobuf:"bytes,12,opt,name=userId" json:"userId,omitempty"`
+}
+
+func (m *GetUserRequest) Reset()                    { *m = GetUserRequest{} }
+func (m *GetUserRequest) String() string            { return proto.CompactTextString(m) }
+func (*GetUserRequest) ProtoMessage()               {}
+func (*GetUserRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+
+func (m *GetUserRequest) GetWorkspace() string {
+	if m != nil {
+		return m.Workspace
+	}
+	return ""
+}
+
+func (m *GetUserRequest) GetUserId() string {
+	if m != nil {
+		return m.UserId
+	}
+	return ""
+}
+
+type Device struct {
+	Workspace            string `protobuf:"bytes,1,opt,name=workspace" json:"workspace,omitempty"`
+	UserID               string `protobuf:"bytes,11,opt,name=userID" json:"userID,omitempty"`
+	Platform             int32  `protobuf:"varint,12,opt,name=platform" json:"platform,omitempty"`
+	Token                string `protobuf:"bytes,13,opt,name=token" json:"token,omitempty"`
+	NotificationDeviceID string `protobuf:"bytes,14,opt,name=notificationDeviceID" json:"notificationDeviceID,omitempty"`
+}
+
+func (m *Device) Reset()                    { *m = Device{} }
+func (m *Device) String() string            { return proto.CompactTextString(m) }
+func (*Device) ProtoMessage()               {}
+func (*Device) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
+
+func (m *Device) GetWorkspace() string {
+	if m != nil {
+		return m.Workspace
+	}
+	return ""
+}
+
+func (m *Device) GetUserID() string {
+	if m != nil {
+		return m.UserID
+	}
+	return ""
+}
+
+func (m *Device) GetPlatform() int32 {
+	if m != nil {
+		return m.Platform
+	}
+	return 0
+}
+
+func (m *Device) GetToken() string {
+	if m != nil {
+		return m.Token
+	}
+	return ""
+}
+
+func (m *Device) GetNotificationDeviceID() string {
+	if m != nil {
+		return m.NotificationDeviceID
+	}
+	return ""
+}
+
+type RoomForUser struct {
+	RoomID             string         `protobuf:"bytes,1,opt,name=roomID" json:"roomID,omitempty"`
+	UserID             string         `protobuf:"bytes,2,opt,name=userID" json:"userID,omitempty"`
+	Name               string         `protobuf:"bytes,3,opt,name=name" json:"name,omitempty"`
+	PictureURL         string         `protobuf:"bytes,4,opt,name=pictureURL" json:"pictureURL,omitempty"`
+	InformationURL     string         `protobuf:"bytes,5,opt,name=informationURL" json:"informationURL,omitempty"`
+	MetaData           []byte         `protobuf:"bytes,6,opt,name=metaData,proto3" json:"metaData,omitempty"`
+	Type               RoomType       `protobuf:"varint,7,opt,name=type,enum=swagchat.protobuf.RoomType" json:"type,omitempty"`
+	LastMessage        string         `protobuf:"bytes,8,opt,name=lastMessage" json:"lastMessage,omitempty"`
+	LastMessageUpdated int64          `protobuf:"varint,9,opt,name=lastMessageUpdated" json:"lastMessageUpdated,omitempty"`
+	CanLeft            bool           `protobuf:"varint,10,opt,name=canLeft" json:"canLeft,omitempty"`
+	Created            int64          `protobuf:"varint,11,opt,name=created" json:"created,omitempty"`
+	Modified           int64          `protobuf:"varint,12,opt,name=modified" json:"modified,omitempty"`
+	Users              []*UserForRoom `protobuf:"bytes,13,rep,name=users" json:"users,omitempty"`
+	RuUnreadCount      int64          `protobuf:"varint,14,opt,name=ruUnreadCount" json:"ruUnreadCount,omitempty"`
+}
+
+func (m *RoomForUser) Reset()                    { *m = RoomForUser{} }
+func (m *RoomForUser) String() string            { return proto.CompactTextString(m) }
+func (*RoomForUser) ProtoMessage()               {}
+func (*RoomForUser) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
+
+func (m *RoomForUser) GetRoomID() string {
+	if m != nil {
+		return m.RoomID
+	}
+	return ""
+}
+
+func (m *RoomForUser) GetUserID() string {
+	if m != nil {
+		return m.UserID
+	}
+	return ""
+}
+
+func (m *RoomForUser) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *RoomForUser) GetPictureURL() string {
+	if m != nil {
+		return m.PictureURL
+	}
+	return ""
+}
+
+func (m *RoomForUser) GetInformationURL() string {
+	if m != nil {
+		return m.InformationURL
+	}
+	return ""
+}
+
+func (m *RoomForUser) GetMetaData() []byte {
+	if m != nil {
+		return m.MetaData
+	}
+	return nil
+}
+
+func (m *RoomForUser) GetType() RoomType {
+	if m != nil {
+		return m.Type
+	}
+	return RoomType_NONE
+}
+
+func (m *RoomForUser) GetLastMessage() string {
+	if m != nil {
+		return m.LastMessage
+	}
+	return ""
+}
+
+func (m *RoomForUser) GetLastMessageUpdated() int64 {
+	if m != nil {
+		return m.LastMessageUpdated
+	}
+	return 0
+}
+
+func (m *RoomForUser) GetCanLeft() bool {
+	if m != nil {
+		return m.CanLeft
+	}
+	return false
+}
+
+func (m *RoomForUser) GetCreated() int64 {
+	if m != nil {
+		return m.Created
+	}
+	return 0
+}
+
+func (m *RoomForUser) GetModified() int64 {
+	if m != nil {
+		return m.Modified
+	}
+	return 0
+}
+
+func (m *RoomForUser) GetUsers() []*UserForRoom {
+	if m != nil {
+		return m.Users
+	}
+	return nil
+}
+
+func (m *RoomForUser) GetRuUnreadCount() int64 {
+	if m != nil {
+		return m.RuUnreadCount
+	}
+	return 0
+}
+
+type UserForRoom struct {
+	RoomID         string `protobuf:"bytes,1,opt,name=roomID" json:"roomID,omitempty"`
+	UserID         string `protobuf:"bytes,2,opt,name=userID" json:"userID,omitempty"`
+	Name           string `protobuf:"bytes,3,opt,name=name" json:"name,omitempty"`
+	PictureURL     string `protobuf:"bytes,4,opt,name=pictureURL" json:"pictureURL,omitempty"`
+	InformationURL string `protobuf:"bytes,5,opt,name=informationURL" json:"informationURL,omitempty"`
+	MetaData       []byte `protobuf:"bytes,6,opt,name=metaData,proto3" json:"metaData,omitempty"`
+	CanBlock       bool   `protobuf:"varint,7,opt,name=canBlock" json:"canBlock,omitempty"`
+	LastAccessed   int64  `protobuf:"varint,8,opt,name=lastAccessed" json:"lastAccessed,omitempty"`
+	Created        int64  `protobuf:"varint,9,opt,name=created" json:"created,omitempty"`
+	Modified       int64  `protobuf:"varint,10,opt,name=modified" json:"modified,omitempty"`
+	RuDisplay      bool   `protobuf:"varint,11,opt,name=ruDisplay" json:"ruDisplay,omitempty"`
+}
+
+func (m *UserForRoom) Reset()                    { *m = UserForRoom{} }
+func (m *UserForRoom) String() string            { return proto.CompactTextString(m) }
+func (*UserForRoom) ProtoMessage()               {}
+func (*UserForRoom) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{5} }
+
+func (m *UserForRoom) GetRoomID() string {
+	if m != nil {
+		return m.RoomID
+	}
+	return ""
+}
+
+func (m *UserForRoom) GetUserID() string {
+	if m != nil {
+		return m.UserID
+	}
+	return ""
+}
+
+func (m *UserForRoom) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *UserForRoom) GetPictureURL() string {
+	if m != nil {
+		return m.PictureURL
+	}
+	return ""
+}
+
+func (m *UserForRoom) GetInformationURL() string {
+	if m != nil {
+		return m.InformationURL
+	}
+	return ""
+}
+
+func (m *UserForRoom) GetMetaData() []byte {
+	if m != nil {
+		return m.MetaData
+	}
+	return nil
+}
+
+func (m *UserForRoom) GetCanBlock() bool {
+	if m != nil {
+		return m.CanBlock
+	}
+	return false
+}
+
+func (m *UserForRoom) GetLastAccessed() int64 {
+	if m != nil {
+		return m.LastAccessed
+	}
+	return 0
+}
+
+func (m *UserForRoom) GetCreated() int64 {
+	if m != nil {
+		return m.Created
+	}
+	return 0
+}
+
+func (m *UserForRoom) GetModified() int64 {
+	if m != nil {
+		return m.Modified
+	}
+	return 0
+}
+
+func (m *UserForRoom) GetRuDisplay() bool {
+	if m != nil {
+		return m.RuDisplay
+	}
+	return false
+}
+
 type Room struct {
-	Workspace    string `protobuf:"bytes,1,opt,name=workspace" json:"workspace,omitempty"`
-	RoomId       string `protobuf:"bytes,11,opt,name=roomId" json:"roomId,omitempty"`
-	UserId       string `protobuf:"bytes,12,opt,name=userId" json:"userId,omitempty"`
-	Name         string `protobuf:"bytes,13,opt,name=name" json:"name,omitempty"`
-	PictureURL   string `protobuf:"bytes,14,opt,name=pictureURL" json:"pictureURL,omitempty"`
-	Type         string `protobuf:"bytes,15,opt,name=type" json:"type,omitempty"`
-	WebhookToken string `protobuf:"bytes,16,opt,name=WebhookToken" json:"WebhookToken,omitempty"`
-	Created      int64  `protobuf:"varint,30,opt,name=created" json:"created,omitempty"`
-	Modified     int64  `protobuf:"varint,31,opt,name=modified" json:"modified,omitempty"`
+	Workspace             string         `protobuf:"bytes,1,opt,name=workspace" json:"workspace,omitempty"`
+	Id                    uint64         `protobuf:"varint,11,opt,name=id" json:"id,omitempty"`
+	RoomId                string         `protobuf:"bytes,12,opt,name=roomId" json:"roomId,omitempty"`
+	UserId                string         `protobuf:"bytes,13,opt,name=userId" json:"userId,omitempty"`
+	Name                  string         `protobuf:"bytes,14,opt,name=name" json:"name,omitempty"`
+	PictureUrl            string         `protobuf:"bytes,15,opt,name=pictureUrl" json:"pictureUrl,omitempty"`
+	InformationUrl        string         `protobuf:"bytes,16,opt,name=informationUrl" json:"informationUrl,omitempty"`
+	MetaData              []byte         `protobuf:"bytes,17,opt,name=MetaData,proto3" json:"MetaData,omitempty"`
+	AvailableMessageTypes string         `protobuf:"bytes,18,opt,name=AvailableMessageTypes" json:"AvailableMessageTypes,omitempty"`
+	Type                  RoomType       `protobuf:"varint,19,opt,name=type,enum=swagchat.protobuf.RoomType" json:"type,omitempty"`
+	WebhookToken          string         `protobuf:"bytes,20,opt,name=WebhookToken" json:"WebhookToken,omitempty"`
+	LastMessage           string         `protobuf:"bytes,21,opt,name=lastMessage" json:"lastMessage,omitempty"`
+	LastMessageUpdated    int64          `protobuf:"varint,22,opt,name=lastMessageUpdated" json:"lastMessageUpdated,omitempty"`
+	MessageCount          int64          `protobuf:"varint,23,opt,name=messageCount" json:"messageCount,omitempty"`
+	NotificationTopicId   string         `protobuf:"bytes,24,opt,name=notificationTopicId" json:"notificationTopicId,omitempty"`
+	CanLeft               bool           `protobuf:"varint,25,opt,name=canLeft" json:"canLeft,omitempty"`
+	SpeechMode            SpeechMode     `protobuf:"varint,26,opt,name=speechMode,enum=swagchat.protobuf.SpeechMode" json:"speechMode,omitempty"`
+	Created               int64          `protobuf:"varint,30,opt,name=created" json:"created,omitempty"`
+	Modified              int64          `protobuf:"varint,31,opt,name=modified" json:"modified,omitempty"`
+	Deleted               int64          `protobuf:"varint,32,opt,name=deleted" json:"deleted,omitempty"`
+	Users                 []*UserForRoom `protobuf:"bytes,40,rep,name=users" json:"users,omitempty"`
+	UserIds               []string       `protobuf:"bytes,41,rep,name=userIds" json:"userIds,omitempty"`
 }
 
 func (m *Room) Reset()                    { *m = Room{} }
 func (m *Room) String() string            { return proto.CompactTextString(m) }
 func (*Room) ProtoMessage()               {}
-func (*Room) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
+func (*Room) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{6} }
 
 func (m *Room) GetWorkspace() string {
 	if m != nil {
 		return m.Workspace
 	}
 	return ""
+}
+
+func (m *Room) GetId() uint64 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
 }
 
 func (m *Room) GetRoomId() string {
@@ -88,18 +719,39 @@ func (m *Room) GetName() string {
 	return ""
 }
 
-func (m *Room) GetPictureURL() string {
+func (m *Room) GetPictureUrl() string {
 	if m != nil {
-		return m.PictureURL
+		return m.PictureUrl
 	}
 	return ""
 }
 
-func (m *Room) GetType() string {
+func (m *Room) GetInformationUrl() string {
+	if m != nil {
+		return m.InformationUrl
+	}
+	return ""
+}
+
+func (m *Room) GetMetaData() []byte {
+	if m != nil {
+		return m.MetaData
+	}
+	return nil
+}
+
+func (m *Room) GetAvailableMessageTypes() string {
+	if m != nil {
+		return m.AvailableMessageTypes
+	}
+	return ""
+}
+
+func (m *Room) GetType() RoomType {
 	if m != nil {
 		return m.Type
 	}
-	return ""
+	return RoomType_NONE
 }
 
 func (m *Room) GetWebhookToken() string {
@@ -107,6 +759,48 @@ func (m *Room) GetWebhookToken() string {
 		return m.WebhookToken
 	}
 	return ""
+}
+
+func (m *Room) GetLastMessage() string {
+	if m != nil {
+		return m.LastMessage
+	}
+	return ""
+}
+
+func (m *Room) GetLastMessageUpdated() int64 {
+	if m != nil {
+		return m.LastMessageUpdated
+	}
+	return 0
+}
+
+func (m *Room) GetMessageCount() int64 {
+	if m != nil {
+		return m.MessageCount
+	}
+	return 0
+}
+
+func (m *Room) GetNotificationTopicId() string {
+	if m != nil {
+		return m.NotificationTopicId
+	}
+	return ""
+}
+
+func (m *Room) GetCanLeft() bool {
+	if m != nil {
+		return m.CanLeft
+	}
+	return false
+}
+
+func (m *Room) GetSpeechMode() SpeechMode {
+	if m != nil {
+		return m.SpeechMode
+	}
+	return SpeechMode_SpeechModeNone
 }
 
 func (m *Room) GetCreated() int64 {
@@ -123,6 +817,27 @@ func (m *Room) GetModified() int64 {
 	return 0
 }
 
+func (m *Room) GetDeleted() int64 {
+	if m != nil {
+		return m.Deleted
+	}
+	return 0
+}
+
+func (m *Room) GetUsers() []*UserForRoom {
+	if m != nil {
+		return m.Users
+	}
+	return nil
+}
+
+func (m *Room) GetUserIds() []string {
+	if m != nil {
+		return m.UserIds
+	}
+	return nil
+}
+
 type Messages struct {
 	AllCount int64      `protobuf:"varint,1,opt,name=allCount" json:"allCount,omitempty"`
 	Limit    int32      `protobuf:"varint,2,opt,name=limit" json:"limit,omitempty"`
@@ -134,7 +849,7 @@ type Messages struct {
 func (m *Messages) Reset()                    { *m = Messages{} }
 func (m *Messages) String() string            { return proto.CompactTextString(m) }
 func (*Messages) ProtoMessage()               {}
-func (*Messages) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+func (*Messages) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{7} }
 
 func (m *Messages) GetAllCount() int64 {
 	if m != nil {
@@ -190,7 +905,7 @@ type Message struct {
 func (m *Message) Reset()                    { *m = Message{} }
 func (m *Message) String() string            { return proto.CompactTextString(m) }
 func (*Message) ProtoMessage()               {}
-func (*Message) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+func (*Message) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{8} }
 
 func (m *Message) GetWorkspace() string {
 	if m != nil {
@@ -298,7 +1013,7 @@ type MessagePayload struct {
 func (m *MessagePayload) Reset()                    { *m = MessagePayload{} }
 func (m *MessagePayload) String() string            { return proto.CompactTextString(m) }
 func (*MessagePayload) ProtoMessage()               {}
-func (*MessagePayload) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
+func (*MessagePayload) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{9} }
 
 func (m *MessagePayload) GetText() string {
 	if m != nil {
@@ -356,7 +1071,7 @@ type RoomIDs struct {
 func (m *RoomIDs) Reset()                    { *m = RoomIDs{} }
 func (m *RoomIDs) String() string            { return proto.CompactTextString(m) }
 func (*RoomIDs) ProtoMessage()               {}
-func (*RoomIDs) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
+func (*RoomIDs) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{10} }
 
 func (m *RoomIDs) GetRoomIDs() []string {
 	if m != nil {
@@ -372,7 +1087,7 @@ type UserIDs struct {
 func (m *UserIDs) Reset()                    { *m = UserIDs{} }
 func (m *UserIDs) String() string            { return proto.CompactTextString(m) }
 func (*UserIDs) ProtoMessage()               {}
-func (*UserIDs) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{5} }
+func (*UserIDs) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{11} }
 
 func (m *UserIDs) GetUserIDs() []string {
 	if m != nil {
@@ -388,7 +1103,7 @@ type RoleIDs struct {
 func (m *RoleIDs) Reset()                    { *m = RoleIDs{} }
 func (m *RoleIDs) String() string            { return proto.CompactTextString(m) }
 func (*RoleIDs) ProtoMessage()               {}
-func (*RoleIDs) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{6} }
+func (*RoleIDs) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{12} }
 
 func (m *RoleIDs) GetRoleIDs() []int32 {
 	if m != nil {
@@ -407,7 +1122,7 @@ type UserRole struct {
 func (m *UserRole) Reset()                    { *m = UserRole{} }
 func (m *UserRole) String() string            { return proto.CompactTextString(m) }
 func (*UserRole) ProtoMessage()               {}
-func (*UserRole) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{7} }
+func (*UserRole) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{13} }
 
 func (m *UserRole) GetUserID() string {
 	if m != nil {
@@ -431,7 +1146,7 @@ type PostUserRoleReq struct {
 func (m *PostUserRoleReq) Reset()                    { *m = PostUserRoleReq{} }
 func (m *PostUserRoleReq) String() string            { return proto.CompactTextString(m) }
 func (*PostUserRoleReq) ProtoMessage()               {}
-func (*PostUserRoleReq) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{8} }
+func (*PostUserRoleReq) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{14} }
 
 func (m *PostUserRoleReq) GetWorkspace() string {
 	if m != nil {
@@ -455,7 +1170,7 @@ type GetUserIDsOfUserRoleReq struct {
 func (m *GetUserIDsOfUserRoleReq) Reset()                    { *m = GetUserIDsOfUserRoleReq{} }
 func (m *GetUserIDsOfUserRoleReq) String() string            { return proto.CompactTextString(m) }
 func (*GetUserIDsOfUserRoleReq) ProtoMessage()               {}
-func (*GetUserIDsOfUserRoleReq) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{9} }
+func (*GetUserIDsOfUserRoleReq) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{15} }
 
 func (m *GetUserIDsOfUserRoleReq) GetWorkspace() string {
 	if m != nil {
@@ -479,7 +1194,7 @@ type GetRoleIDsOfUserRoleReq struct {
 func (m *GetRoleIDsOfUserRoleReq) Reset()                    { *m = GetRoleIDsOfUserRoleReq{} }
 func (m *GetRoleIDsOfUserRoleReq) String() string            { return proto.CompactTextString(m) }
 func (*GetRoleIDsOfUserRoleReq) ProtoMessage()               {}
-func (*GetRoleIDsOfUserRoleReq) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{10} }
+func (*GetRoleIDsOfUserRoleReq) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{16} }
 
 func (m *GetRoleIDsOfUserRoleReq) GetWorkspace() string {
 	if m != nil {
@@ -509,7 +1224,7 @@ type RoomUser struct {
 func (m *RoomUser) Reset()                    { *m = RoomUser{} }
 func (m *RoomUser) String() string            { return proto.CompactTextString(m) }
 func (*RoomUser) ProtoMessage()               {}
-func (*RoomUser) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{11} }
+func (*RoomUser) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{17} }
 
 func (m *RoomUser) GetRoomID() string {
 	if m != nil {
@@ -549,7 +1264,7 @@ type PostRoomUserReq struct {
 func (m *PostRoomUserReq) Reset()                    { *m = PostRoomUserReq{} }
 func (m *PostRoomUserReq) String() string            { return proto.CompactTextString(m) }
 func (*PostRoomUserReq) ProtoMessage()               {}
-func (*PostRoomUserReq) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{12} }
+func (*PostRoomUserReq) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{18} }
 
 func (m *PostRoomUserReq) GetWorkspace() string {
 	if m != nil {
@@ -588,7 +1303,7 @@ type DeleteRoomUserReq struct {
 func (m *DeleteRoomUserReq) Reset()                    { *m = DeleteRoomUserReq{} }
 func (m *DeleteRoomUserReq) String() string            { return proto.CompactTextString(m) }
 func (*DeleteRoomUserReq) ProtoMessage()               {}
-func (*DeleteRoomUserReq) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{13} }
+func (*DeleteRoomUserReq) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{19} }
 
 func (m *DeleteRoomUserReq) GetWorkspace() string {
 	if m != nil {
@@ -619,7 +1334,7 @@ type GetRoomIDsOfRoomUserReq struct {
 func (m *GetRoomIDsOfRoomUserReq) Reset()                    { *m = GetRoomIDsOfRoomUserReq{} }
 func (m *GetRoomIDsOfRoomUserReq) String() string            { return proto.CompactTextString(m) }
 func (*GetRoomIDsOfRoomUserReq) ProtoMessage()               {}
-func (*GetRoomIDsOfRoomUserReq) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{14} }
+func (*GetRoomIDsOfRoomUserReq) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{20} }
 
 func (m *GetRoomIDsOfRoomUserReq) GetWorkspace() string {
 	if m != nil {
@@ -644,7 +1359,7 @@ type GetUserIDsOfRoomUserReq struct {
 func (m *GetUserIDsOfRoomUserReq) Reset()                    { *m = GetUserIDsOfRoomUserReq{} }
 func (m *GetUserIDsOfRoomUserReq) String() string            { return proto.CompactTextString(m) }
 func (*GetUserIDsOfRoomUserReq) ProtoMessage()               {}
-func (*GetUserIDsOfRoomUserReq) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{15} }
+func (*GetUserIDsOfRoomUserReq) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{21} }
 
 func (m *GetUserIDsOfRoomUserReq) GetWorkspace() string {
 	if m != nil {
@@ -668,6 +1383,12 @@ func (m *GetUserIDsOfRoomUserReq) GetRoleIDs() []int32 {
 }
 
 func init() {
+	proto.RegisterType((*User)(nil), "swagchat.protobuf.User")
+	proto.RegisterType((*CreateUserRequest)(nil), "swagchat.protobuf.CreateUserRequest")
+	proto.RegisterType((*GetUserRequest)(nil), "swagchat.protobuf.GetUserRequest")
+	proto.RegisterType((*Device)(nil), "swagchat.protobuf.Device")
+	proto.RegisterType((*RoomForUser)(nil), "swagchat.protobuf.RoomForUser")
+	proto.RegisterType((*UserForRoom)(nil), "swagchat.protobuf.UserForRoom")
 	proto.RegisterType((*Room)(nil), "swagchat.protobuf.Room")
 	proto.RegisterType((*Messages)(nil), "swagchat.protobuf.Messages")
 	proto.RegisterType((*Message)(nil), "swagchat.protobuf.Message")
@@ -684,56 +1405,106 @@ func init() {
 	proto.RegisterType((*DeleteRoomUserReq)(nil), "swagchat.protobuf.DeleteRoomUserReq")
 	proto.RegisterType((*GetRoomIDsOfRoomUserReq)(nil), "swagchat.protobuf.GetRoomIDsOfRoomUserReq")
 	proto.RegisterType((*GetUserIDsOfRoomUserReq)(nil), "swagchat.protobuf.GetUserIDsOfRoomUserReq")
+	proto.RegisterEnum("swagchat.protobuf.RoomType", RoomType_name, RoomType_value)
+	proto.RegisterEnum("swagchat.protobuf.SpeechMode", SpeechMode_name, SpeechMode_value)
 }
 
 func init() { proto.RegisterFile("chatMessage.proto", fileDescriptor0) }
 
 var fileDescriptor0 = []byte{
-	// 733 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x54, 0xdd, 0x6e, 0xd3, 0x4c,
-	0x10, 0x95, 0xbf, 0xc4, 0x8d, 0xb3, 0x49, 0xda, 0x2f, 0x16, 0x82, 0x55, 0xa9, 0x4a, 0x30, 0x5c,
-	0xe4, 0x2a, 0x95, 0x8a, 0x04, 0x12, 0xdc, 0x41, 0x24, 0x54, 0x09, 0x68, 0xb5, 0xa2, 0x42, 0xe2,
-	0x6e, 0x63, 0x8f, 0xe3, 0x55, 0x6d, 0xaf, 0x59, 0xaf, 0x5b, 0x0a, 0x2f, 0xc1, 0x33, 0xf0, 0x2c,
-	0x3c, 0x13, 0xd7, 0x68, 0x7f, 0xec, 0xc6, 0x6a, 0xaa, 0xb6, 0xa8, 0xdc, 0xcd, 0x19, 0xcf, 0xce,
-	0xcc, 0x9e, 0x73, 0xd6, 0x68, 0x1c, 0x26, 0x54, 0xbe, 0x87, 0xb2, 0xa4, 0x4b, 0x98, 0x15, 0x82,
-	0x4b, 0xee, 0x8f, 0xcb, 0x33, 0xba, 0x54, 0x69, 0x83, 0x17, 0x55, 0x1c, 0xfc, 0x76, 0x50, 0x97,
-	0x70, 0x9e, 0xf9, 0x3b, 0xa8, 0x7f, 0xc6, 0xc5, 0x49, 0x59, 0xd0, 0x10, 0xb0, 0x33, 0x71, 0xa6,
-	0x7d, 0x72, 0x91, 0xf0, 0xef, 0xa3, 0x0d, 0xc1, 0x79, 0x76, 0x10, 0xe1, 0x81, 0xfe, 0x64, 0x91,
-	0xca, 0x57, 0x25, 0x88, 0x83, 0x08, 0x0f, 0x4d, 0xde, 0x20, 0xdf, 0x47, 0xdd, 0x9c, 0x66, 0x80,
-	0x47, 0x3a, 0xab, 0x63, 0x7f, 0x17, 0xa1, 0x82, 0x85, 0xb2, 0x12, 0x70, 0x4c, 0xde, 0xe1, 0x4d,
-	0xfd, 0x65, 0x25, 0xa3, 0xce, 0xc8, 0xf3, 0x02, 0xf0, 0x96, 0x39, 0xa3, 0x62, 0x3f, 0x40, 0xc3,
-	0x4f, 0xb0, 0x48, 0x38, 0x3f, 0xf9, 0xc8, 0x4f, 0x20, 0xc7, 0xff, 0xeb, 0x6f, 0xad, 0x9c, 0x8f,
-	0x51, 0x2f, 0x14, 0x40, 0x25, 0x44, 0x78, 0x77, 0xe2, 0x4c, 0x3b, 0xa4, 0x86, 0xfe, 0x36, 0xf2,
-	0x32, 0x1e, 0xb1, 0x98, 0x41, 0x84, 0x1f, 0xe9, 0x4f, 0x0d, 0x0e, 0x7e, 0x3a, 0xc8, 0xb3, 0xec,
-	0x94, 0xaa, 0x90, 0xa6, 0xe9, 0x1b, 0x5e, 0xe5, 0x52, 0xdf, 0xbd, 0x43, 0x1a, 0xec, 0xdf, 0x43,
-	0x6e, 0xca, 0x32, 0x26, 0xf1, 0x7f, 0x13, 0x67, 0xea, 0x12, 0x03, 0xd4, 0xc5, 0x79, 0x1c, 0x97,
-	0x20, 0x71, 0x47, 0xa7, 0x2d, 0x52, 0xd5, 0x5c, 0x44, 0x20, 0x70, 0x57, 0x6f, 0x6a, 0x80, 0xff,
-	0x1c, 0x79, 0x99, 0x9d, 0x85, 0xdd, 0x49, 0x67, 0x3a, 0xd8, 0xdf, 0x9e, 0x5d, 0xd2, 0x62, 0x66,
-	0xd7, 0x21, 0x4d, 0x6d, 0xf0, 0xa3, 0x83, 0x7a, 0x36, 0x7b, 0x8d, 0x40, 0xdb, 0xc8, 0x83, 0x3c,
-	0x2a, 0x38, 0xcb, 0xcd, 0xa2, 0x7d, 0xd2, 0x60, 0xff, 0x29, 0x1a, 0xd1, 0x4a, 0x26, 0x5c, 0xb0,
-	0x6f, 0x54, 0x32, 0x9e, 0xeb, 0x95, 0xfb, 0xa4, 0x9d, 0x54, 0x34, 0x1a, 0xf1, 0x4a, 0xdc, 0x9d,
-	0x74, 0xa6, 0x7d, 0x52, 0xc3, 0xbf, 0x11, 0x5f, 0x0b, 0x39, 0x5a, 0x11, 0x72, 0x07, 0xf5, 0xe1,
-	0x14, 0x72, 0xf9, 0x41, 0xb9, 0xc2, 0x68, 0x7f, 0x91, 0xf0, 0x5f, 0xa1, 0x5e, 0x41, 0xcf, 0x53,
-	0x4e, 0x23, 0xad, 0xfe, 0x60, 0xff, 0xf1, 0xd5, 0xf4, 0x1c, 0x99, 0x42, 0x52, 0x9f, 0x50, 0xe3,
-	0x04, 0x4f, 0x41, 0x7b, 0xc3, 0x25, 0x3a, 0xbe, 0xe4, 0x9b, 0xf1, 0x9d, 0xf9, 0xe6, 0x97, 0x83,
-	0x36, 0xdb, 0x9b, 0xe8, 0xfb, 0xc2, 0x57, 0x69, 0x45, 0xd1, 0xb1, 0xca, 0x65, 0x2c, 0x03, 0xcb,
-	0x98, 0x8e, 0x55, 0xdb, 0x98, 0xa5, 0xa0, 0x1f, 0x86, 0x61, 0xac, 0xc1, 0x8a, 0x9f, 0x92, 0x57,
-	0x22, 0x84, 0x63, 0x91, 0x5a, 0xe2, 0x2e, 0x12, 0xea, 0x3a, 0x32, 0xa9, 0xb2, 0x45, 0x4e, 0x59,
-	0xaa, 0x0a, 0x0c, 0x81, 0xad, 0x9c, 0x72, 0xde, 0x19, 0x8b, 0x64, 0xa2, 0x19, 0x74, 0x89, 0x01,
-	0x4a, 0xa3, 0x04, 0xd8, 0x32, 0x91, 0x96, 0x1e, 0x8b, 0x82, 0x27, 0xa8, 0xa7, 0x9e, 0xfd, 0xc1,
-	0xbc, 0x54, 0x3c, 0x08, 0x13, 0x62, 0xc7, 0x08, 0x6f, 0xa1, 0x2a, 0x3a, 0x56, 0x92, 0x9a, 0xa2,
-	0xca, 0x84, 0x75, 0x91, 0x85, 0xa6, 0x53, 0x0a, 0x4d, 0x27, 0x1d, 0xea, 0x22, 0x97, 0xd4, 0x30,
-	0x78, 0x89, 0x3c, 0xd5, 0x49, 0x15, 0x36, 0xb6, 0x99, 0xd7, 0x76, 0x32, 0xc8, 0xd8, 0x4c, 0x95,
-	0x6b, 0x72, 0x5c, 0x62, 0x51, 0x90, 0xa0, 0xad, 0x23, 0x5e, 0xca, 0xfa, 0x3c, 0x81, 0x2f, 0xd7,
-	0xbc, 0x85, 0x17, 0xc8, 0xab, 0x6c, 0xb1, 0x1e, 0x31, 0xd8, 0x7f, 0xb8, 0xc6, 0x4e, 0x4d, 0xbf,
-	0xa6, 0x38, 0x38, 0x44, 0x0f, 0xde, 0x82, 0xb4, 0x57, 0x3e, 0x8c, 0x6f, 0x3e, 0xf1, 0xaa, 0xd5,
-	0x4d, 0x43, 0x4b, 0xcf, 0x2d, 0x1b, 0xae, 0xe3, 0x28, 0x38, 0x45, 0x9e, 0x92, 0x4d, 0x35, 0x6a,
-	0x9e, 0xe5, 0xbc, 0xf5, 0x2c, 0xe7, 0x2b, 0x67, 0x87, 0x2d, 0x7e, 0x27, 0x68, 0x50, 0xe5, 0x02,
-	0x68, 0x64, 0xfe, 0x73, 0x23, 0xbd, 0xe9, 0x6a, 0x4a, 0xe9, 0x17, 0xb1, 0xb2, 0x48, 0xe9, 0xb9,
-	0x76, 0x98, 0x47, 0x6a, 0x18, 0x7c, 0x37, 0x1a, 0xd4, 0xb3, 0x6f, 0xc8, 0xc8, 0x9a, 0xe5, 0x56,
-	0x7c, 0x34, 0x6c, 0xf9, 0x68, 0x75, 0xf8, 0xa8, 0x3d, 0x3c, 0x44, 0xe3, 0x39, 0xa4, 0x20, 0xe1,
-	0x1f, 0x8e, 0x6f, 0xa4, 0xd2, 0xce, 0x3f, 0x8c, 0x6f, 0x35, 0x6a, 0xad, 0x54, 0xac, 0x6d, 0xa6,
-	0x3b, 0xd9, 0xbd, 0x7e, 0x5d, 0xc3, 0xd6, 0xeb, 0x7a, 0xbd, 0xfb, 0x79, 0x67, 0xc9, 0x64, 0x52,
-	0x2d, 0x66, 0x21, 0xcf, 0xf6, 0x6a, 0xab, 0xef, 0xd5, 0x56, 0x5f, 0x6c, 0xe8, 0xe8, 0xd9, 0x9f,
-	0x00, 0x00, 0x00, 0xff, 0xff, 0x7b, 0x8e, 0x96, 0xcb, 0x13, 0x08, 0x00, 0x00,
+	// 1504 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xd4, 0x57, 0xdd, 0x6e, 0xdb, 0x36,
+	0x14, 0xae, 0x62, 0x3b, 0xb1, 0x8f, 0x1d, 0xc7, 0x61, 0xd3, 0x96, 0xcd, 0xb2, 0xd4, 0xd5, 0x86,
+	0xc1, 0xcb, 0x80, 0x74, 0x48, 0x8b, 0x0d, 0xd8, 0xb0, 0x8b, 0xb6, 0x6e, 0x87, 0x00, 0xf9, 0x83,
+	0x96, 0x20, 0xc0, 0xee, 0x68, 0x89, 0x8e, 0x85, 0xc8, 0xa2, 0x2b, 0x51, 0xc9, 0xb2, 0xbd, 0xc0,
+	0x76, 0xb7, 0x67, 0x18, 0xf6, 0x1e, 0xbb, 0xd9, 0xcd, 0xde, 0x63, 0x77, 0x7b, 0x89, 0x81, 0x87,
+	0x94, 0x2d, 0x39, 0x52, 0x97, 0xee, 0x17, 0xbb, 0xd3, 0x77, 0x78, 0x48, 0x1e, 0x7e, 0xe7, 0x9c,
+	0x8f, 0x14, 0xac, 0xba, 0x23, 0x26, 0xf7, 0x79, 0x1c, 0xb3, 0x33, 0xbe, 0x3d, 0x89, 0x84, 0x14,
+	0x64, 0x35, 0xbe, 0x64, 0x67, 0xca, 0xac, 0xf1, 0x20, 0x19, 0xda, 0xbf, 0x55, 0xa1, 0x7a, 0x12,
+	0xf3, 0x88, 0xb4, 0x61, 0xc1, 0xf7, 0x68, 0xb3, 0x6b, 0xf5, 0xaa, 0xce, 0x82, 0xef, 0x91, 0xbb,
+	0xb0, 0x98, 0xc4, 0x3c, 0xda, 0xf5, 0x68, 0xab, 0x6b, 0xf5, 0x1a, 0x8e, 0x41, 0x84, 0x40, 0x35,
+	0x64, 0x63, 0x4e, 0x97, 0xd1, 0x8a, 0xdf, 0x64, 0x13, 0x60, 0xe2, 0xbb, 0x32, 0x89, 0xf8, 0x49,
+	0x14, 0xd0, 0x36, 0x8e, 0x64, 0x2c, 0xe4, 0x3d, 0x68, 0xfb, 0xe1, 0x50, 0x44, 0x63, 0x26, 0x7d,
+	0x11, 0x2a, 0x9f, 0x15, 0xf4, 0x99, 0xb3, 0x92, 0x2e, 0x34, 0x93, 0x30, 0xe2, 0xcc, 0x7b, 0x2e,
+	0x92, 0x50, 0xd2, 0x0e, 0x06, 0x93, 0x35, 0x91, 0x75, 0xa8, 0x8f, 0xb9, 0x64, 0x7d, 0x26, 0x19,
+	0x5d, 0xed, 0x5a, 0xbd, 0x96, 0x33, 0xc5, 0x2a, 0xe2, 0x49, 0x32, 0x08, 0x7c, 0x97, 0x92, 0xae,
+	0xd5, 0xab, 0x3b, 0x06, 0xa9, 0x39, 0x2e, 0x0b, 0x9f, 0x05, 0xc2, 0x3d, 0xa7, 0xb7, 0x71, 0x64,
+	0x8a, 0xd5, 0x69, 0x02, 0x16, 0x9e, 0xd1, 0x35, 0x7d, 0x1a, 0xf5, 0xad, 0xa2, 0x60, 0xae, 0xcb,
+	0xe3, 0xf8, 0x58, 0x9c, 0xf3, 0x90, 0xde, 0xc1, 0xa1, 0xac, 0x89, 0x6c, 0x41, 0x27, 0x60, 0xb1,
+	0x7c, 0x8a, 0x26, 0x47, 0x88, 0xf1, 0xae, 0x47, 0xef, 0xa2, 0xdb, 0x35, 0x3b, 0xb1, 0xa1, 0x35,
+	0xb3, 0x71, 0x8f, 0xde, 0xeb, 0x5a, 0xbd, 0x8a, 0x93, 0xb3, 0x11, 0x0a, 0x4b, 0x6e, 0xc4, 0x99,
+	0xe4, 0x1e, 0x7d, 0x80, 0xc3, 0x29, 0xc4, 0xf3, 0x0a, 0xcf, 0x1f, 0xfa, 0xdc, 0xa3, 0x5d, 0x1c,
+	0x9a, 0x62, 0x35, 0xcb, 0xe3, 0x01, 0x57, 0xb3, 0x1e, 0xea, 0x59, 0x06, 0x92, 0x35, 0xa8, 0x45,
+	0x22, 0xe0, 0x31, 0xed, 0x75, 0x2b, 0xbd, 0x9a, 0xa3, 0x01, 0x79, 0xa2, 0xac, 0x62, 0x1c, 0xd3,
+	0xf7, 0xbb, 0x95, 0x5e, 0x73, 0x67, 0x73, 0xfb, 0x5a, 0x35, 0x6c, 0xab, 0x98, 0x5f, 0x8a, 0x48,
+	0x15, 0x84, 0xa3, 0x9d, 0xc9, 0x63, 0xb5, 0xcb, 0x85, 0xef, 0xf2, 0x98, 0x6e, 0xe1, 0xbc, 0xfb,
+	0x05, 0xf3, 0xfa, 0xe8, 0xe1, 0xa4, 0x9e, 0x2a, 0x15, 0x03, 0xc5, 0x6f, 0x4c, 0x3f, 0xe8, 0x56,
+	0x54, 0xf1, 0x68, 0x64, 0x7f, 0xb7, 0x00, 0xab, 0xcf, 0xf1, 0x68, 0xb8, 0x05, 0x7f, 0x95, 0xf0,
+	0x58, 0x92, 0x0d, 0x68, 0x5c, 0x8a, 0xe8, 0x3c, 0x9e, 0x30, 0x97, 0x53, 0x0b, 0x79, 0x9c, 0x19,
+	0xfe, 0x93, 0x42, 0xfc, 0x17, 0xca, 0xcc, 0x7e, 0x09, 0xed, 0xcf, 0xb9, 0xfc, 0xcb, 0x3c, 0xd8,
+	0x3f, 0x5a, 0xb0, 0xa8, 0xf9, 0xbf, 0xe1, 0x02, 0x7d, 0xec, 0xf2, 0x74, 0x81, 0xbe, 0x0a, 0x7c,
+	0x12, 0x30, 0xa9, 0x08, 0xc0, 0xa5, 0x6b, 0xce, 0x14, 0xab, 0x4a, 0x92, 0xd8, 0x05, 0x9a, 0x65,
+	0x0d, 0xc8, 0x0e, 0xac, 0x85, 0x42, 0xfa, 0x43, 0xdf, 0x45, 0xc6, 0xf4, 0xee, 0xbb, 0x7d, 0x43,
+	0x78, 0xe1, 0x98, 0xfd, 0x6b, 0x05, 0x9a, 0x99, 0xf2, 0x52, 0xd1, 0xa8, 0x02, 0xdb, 0xed, 0x9b,
+	0x40, 0x0d, 0xca, 0x44, 0xb9, 0x90, 0x8b, 0x32, 0x4d, 0x77, 0xa5, 0x38, 0xdd, 0xce, 0x1e, 0xad,
+	0xe6, 0xd3, 0xed, 0xec, 0xcd, 0xa7, 0xdb, 0xd9, 0xa3, 0xb5, 0xeb, 0xe9, 0x76, 0xf6, 0x72, 0xe9,
+	0x5e, 0x9c, 0x4b, 0xf7, 0x23, 0xa8, 0xca, 0xab, 0x09, 0xa7, 0x4b, 0x5d, 0xab, 0xd7, 0xde, 0x79,
+	0xab, 0xa4, 0x69, 0x8e, 0xaf, 0x26, 0xdc, 0x41, 0x47, 0x25, 0x1f, 0xaa, 0xb9, 0x8d, 0xf2, 0xd2,
+	0xba, 0x96, 0x8f, 0x8c, 0x89, 0x6c, 0x03, 0xc9, 0xc0, 0x93, 0x89, 0x87, 0x9d, 0xdf, 0xc0, 0x1e,
+	0x2e, 0x18, 0x41, 0x79, 0x60, 0xe1, 0x1e, 0x1f, 0x4a, 0x0a, 0x58, 0x58, 0x29, 0xcc, 0x0a, 0x47,
+	0xb3, 0x5c, 0x38, 0x5a, 0x73, 0xc2, 0xf1, 0x04, 0x6a, 0x8a, 0xd4, 0x98, 0x2e, 0x97, 0x0a, 0x81,
+	0x4a, 0xd1, 0x4b, 0x11, 0xa9, 0xa3, 0x39, 0xda, 0x99, 0xbc, 0x0b, 0xcb, 0x51, 0x72, 0x92, 0x91,
+	0xe7, 0x36, 0x2e, 0x9b, 0x37, 0xda, 0xbf, 0x2c, 0x40, 0x33, 0x33, 0xf9, 0x7f, 0x93, 0xe6, 0x6c,
+	0xf7, 0x2e, 0xcd, 0x75, 0xef, 0xbc, 0x84, 0xd7, 0x5f, 0x2f, 0xe1, 0x8d, 0xf2, 0x4c, 0xc0, 0x5c,
+	0x26, 0x36, 0xa0, 0x11, 0x25, 0x7d, 0x3f, 0x9e, 0x04, 0xec, 0x0a, 0x33, 0x58, 0x77, 0x66, 0x06,
+	0xfb, 0xdb, 0x45, 0xa8, 0x22, 0x89, 0xaf, 0xef, 0xeb, 0x82, 0x9b, 0x3b, 0xd2, 0x77, 0x52, 0x2b,
+	0x43, 0x79, 0xf6, 0x46, 0x5f, 0x2e, 0x14, 0xd2, 0x76, 0xa9, 0x90, 0xae, 0xdc, 0x40, 0x48, 0x3b,
+	0x65, 0x42, 0xba, 0x3f, 0x27, 0xa4, 0x29, 0x26, 0x4f, 0xe0, 0xce, 0xd3, 0x0b, 0xe6, 0x07, 0x6c,
+	0x10, 0x70, 0x53, 0xf1, 0xaa, 0x8d, 0x62, 0xd4, 0xd5, 0x86, 0x53, 0x3c, 0x38, 0xed, 0xc7, 0xdb,
+	0x37, 0xed, 0x47, 0x1b, 0x5a, 0xa7, 0x7c, 0x30, 0x12, 0xe2, 0x5c, 0xdf, 0xe7, 0x5a, 0x83, 0x73,
+	0xb6, 0xf9, 0x9e, 0xbd, 0x73, 0xd3, 0x9e, 0xbd, 0x5b, 0xda, 0xb3, 0x36, 0xb4, 0xc6, 0xda, 0xa2,
+	0x9b, 0xc5, 0x5c, 0xfb, 0x59, 0x1b, 0xf9, 0x10, 0x6e, 0x67, 0xa5, 0xf2, 0x58, 0x4c, 0x7c, 0x77,
+	0xd7, 0xa3, 0x14, 0x77, 0x2f, 0x1a, 0xca, 0x2a, 0xc1, 0xfd, 0xbc, 0x12, 0x7c, 0x06, 0x10, 0x4f,
+	0x38, 0x77, 0x47, 0xfb, 0xc2, 0xe3, 0x74, 0x1d, 0xc9, 0x79, 0xbb, 0x80, 0x9c, 0x2f, 0xa6, 0x4e,
+	0x4e, 0x66, 0x42, 0xb6, 0x7c, 0x37, 0xcb, 0xcb, 0xf7, 0x41, 0xf9, 0x0b, 0xa4, 0x9b, 0x7f, 0x81,
+	0x4c, 0x25, 0xa6, 0xf7, 0x26, 0x12, 0x43, 0x61, 0x49, 0xd7, 0xa4, 0x7e, 0xa3, 0x34, 0x9c, 0x14,
+	0xda, 0x3f, 0x58, 0xaa, 0x90, 0x90, 0xbb, 0x58, 0x85, 0xc4, 0x82, 0x40, 0xf3, 0x6a, 0xe9, 0x90,
+	0x52, 0xac, 0x2e, 0xac, 0xc0, 0x1f, 0xfb, 0x12, 0x65, 0xa5, 0xe6, 0x68, 0xa0, 0x4a, 0x5f, 0x0c,
+	0x87, 0x31, 0x97, 0xa8, 0x2b, 0x35, 0xc7, 0x20, 0xe5, 0x2d, 0x22, 0x8f, 0x47, 0x46, 0x54, 0x34,
+	0x20, 0x1f, 0x29, 0x9d, 0xd0, 0x7b, 0xd1, 0x1a, 0xc6, 0xbf, 0x5e, 0x10, 0xbf, 0x09, 0xc7, 0x99,
+	0xfa, 0xda, 0xdf, 0x57, 0x60, 0x29, 0xad, 0x97, 0xd7, 0xb7, 0xec, 0x3a, 0xd4, 0x79, 0xe8, 0x4d,
+	0x84, 0x1f, 0x4a, 0xa3, 0x7f, 0x53, 0xac, 0x74, 0x96, 0x25, 0x72, 0x24, 0x22, 0xff, 0x6b, 0xcc,
+	0xbd, 0x91, 0xc2, 0xbc, 0x31, 0x4b, 0x55, 0x35, 0x47, 0x55, 0xa6, 0xfd, 0x9b, 0x25, 0xed, 0x7f,
+	0xed, 0x1d, 0x85, 0x0d, 0x65, 0xde, 0x51, 0xd8, 0x33, 0x1b, 0xd0, 0xe0, 0x17, 0x3c, 0x94, 0x07,
+	0x33, 0x5d, 0x98, 0x19, 0xc8, 0xa7, 0xb0, 0x34, 0x61, 0x57, 0x81, 0x60, 0x1e, 0x2a, 0x43, 0x73,
+	0xe7, 0x61, 0x39, 0x3d, 0x47, 0xda, 0xd1, 0x49, 0x67, 0xa8, 0xed, 0xd4, 0x73, 0x14, 0xf5, 0xa2,
+	0xe6, 0xe0, 0xf7, 0xb5, 0x16, 0x5d, 0x2d, 0x68, 0xd1, 0x3f, 0x55, 0xa1, 0xf6, 0xcf, 0x16, 0xb4,
+	0xf3, 0x91, 0xe0, 0x79, 0xf9, 0x57, 0xd2, 0x24, 0x05, 0xbf, 0x95, 0x6d, 0xec, 0x8f, 0xb9, 0x61,
+	0x0c, 0xbf, 0xd5, 0xb2, 0x43, 0x3f, 0xe0, 0x28, 0x8d, 0x9a, 0xb1, 0x29, 0x56, 0xfc, 0xc4, 0x22,
+	0x89, 0x5c, 0x54, 0x47, 0x4d, 0xdc, 0xcc, 0xa0, 0x8e, 0x23, 0x47, 0xc9, 0x78, 0x10, 0x32, 0x3f,
+	0x98, 0xbd, 0x43, 0x73, 0x36, 0x55, 0x79, 0x97, 0xbe, 0x27, 0x47, 0xc8, 0x60, 0xcd, 0xd1, 0x40,
+	0xe5, 0x68, 0xc4, 0xfd, 0xb3, 0x91, 0x34, 0xf4, 0x18, 0x64, 0xbf, 0x03, 0x4b, 0xf8, 0x3b, 0xd1,
+	0xc7, 0x1e, 0xd1, 0x57, 0x68, 0x4c, 0x2d, 0x9d, 0x78, 0x03, 0x95, 0xd3, 0x09, 0x5e, 0xa2, 0xb3,
+	0x46, 0x9a, 0x39, 0x19, 0xa8, 0x57, 0x0a, 0xf8, 0x74, 0x25, 0xfc, 0x44, 0xa7, 0x9a, 0x93, 0x42,
+	0xfb, 0x13, 0xa8, 0xe3, 0xbb, 0x54, 0xe5, 0xa6, 0xec, 0xd5, 0x88, 0x65, 0xa6, 0xdc, 0xcd, 0x9b,
+	0xd1, 0x20, 0x7b, 0x04, 0x2b, 0x47, 0x22, 0x96, 0xe9, 0x7c, 0x87, 0xbf, 0xfa, 0x83, 0x5e, 0xf8,
+	0x18, 0xea, 0x89, 0x71, 0xc6, 0x2d, 0x9a, 0x85, 0xa2, 0x3e, 0x5d, 0x6f, 0xea, 0x6c, 0x1f, 0xc2,
+	0x3d, 0xf3, 0x80, 0xde, 0xed, 0xc7, 0x87, 0xc3, 0x9b, 0xef, 0x58, 0x16, 0xba, 0x5e, 0xd0, 0xd0,
+	0xf3, 0x86, 0x0b, 0x16, 0x71, 0x64, 0x5f, 0x40, 0x5d, 0xa5, 0x6d, 0xee, 0xbd, 0xdb, 0x2c, 0x79,
+	0x08, 0xb5, 0x72, 0xfc, 0xce, 0xfd, 0x0b, 0x2f, 0x63, 0xa4, 0xb9, 0x7f, 0x61, 0xa5, 0xbe, 0xe6,
+	0xe9, 0xd0, 0xd6, 0x97, 0x81, 0x81, 0xf6, 0x37, 0x3a, 0x07, 0xe9, 0xde, 0x37, 0x64, 0xa4, 0x20,
+	0xb8, 0x4c, 0x1d, 0xb5, 0x72, 0x75, 0x94, 0xdd, 0x7c, 0x39, 0xbf, 0xb9, 0x0b, 0xab, 0x7d, 0xbc,
+	0x05, 0xfe, 0xc1, 0xed, 0xa7, 0xa9, 0xc2, 0xca, 0x3f, 0x1c, 0xbe, 0xd1, 0x56, 0x85, 0xa9, 0xf2,
+	0xf3, 0xc5, 0xf4, 0xb7, 0xc4, 0x9e, 0x76, 0x57, 0x2b, 0xd7, 0x5d, 0x5b, 0x9e, 0xae, 0x0a, 0xf5,
+	0x44, 0x21, 0x75, 0xa8, 0x1e, 0x1c, 0x1e, 0xbc, 0xe8, 0xdc, 0x22, 0x2d, 0xa8, 0x1f, 0x86, 0xfc,
+	0x30, 0x3c, 0x0c, 0x79, 0xc7, 0x22, 0x2b, 0xd0, 0x3c, 0x8a, 0xfc, 0x0b, 0xa6, 0x59, 0xec, 0x2c,
+	0x90, 0x36, 0xc0, 0x11, 0xfe, 0x67, 0x22, 0xae, 0x28, 0x7c, 0x20, 0xa4, 0xfa, 0xe9, 0x56, 0xb8,
+	0xaa, 0x26, 0xa4, 0x8b, 0xbe, 0x08, 0xbd, 0x4e, 0x6d, 0xeb, 0x27, 0x0b, 0x60, 0x76, 0xd9, 0x13,
+	0x02, 0xed, 0x19, 0x3a, 0x10, 0x21, 0xef, 0xdc, 0x22, 0x1b, 0x40, 0x67, 0xb6, 0x53, 0x76, 0xce,
+	0x93, 0xc9, 0x29, 0x1f, 0x1c, 0x8b, 0x53, 0x3e, 0xe8, 0x58, 0x64, 0x13, 0xd6, 0x0b, 0x47, 0x9f,
+	0x07, 0x22, 0xf1, 0x3a, 0x0b, 0xa4, 0x0b, 0x1b, 0xf3, 0xe3, 0x38, 0x94, 0x7a, 0x54, 0xc8, 0x1a,
+	0x74, 0x66, 0x1e, 0x4f, 0x83, 0x4b, 0x76, 0x15, 0x77, 0xaa, 0x79, 0xeb, 0x3e, 0x0b, 0x13, 0x16,
+	0x74, 0x6a, 0x64, 0x15, 0x96, 0x67, 0x56, 0x75, 0x82, 0xc5, 0x67, 0x9b, 0x5f, 0x6e, 0x9c, 0xf9,
+	0x72, 0x94, 0x0c, 0xb6, 0x5d, 0x31, 0x7e, 0x94, 0x4a, 0xc2, 0xa3, 0x54, 0x12, 0x06, 0x8b, 0xf8,
+	0xf5, 0xf8, 0xf7, 0x00, 0x00, 0x00, 0xff, 0xff, 0xc4, 0x8a, 0x5b, 0x15, 0xe9, 0x12, 0x00, 0x00,
 }

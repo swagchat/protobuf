@@ -26,6 +26,11 @@ service ChatOutgoing {
   }
 }
 
+service UserService {
+  rpc CreateUser (CreateUserRequest) returns (User) {}
+  rpc GetUser (GetUserRequest) returns (User) {}
+}
+
 service UserRoleService {
   rpc PostUserRole (PostUserRoleReq) returns (UserRole) {
     option (google.api.http) = {
