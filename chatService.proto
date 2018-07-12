@@ -33,13 +33,13 @@ service UserService {
 
 service UserRoleService {
   rpc CreateUserRole (CreateUserRoleRequest) returns (UserRole) {}
-  rpc GetRoleIdsOfUserRole (GetRoleIdsOfUserRoleRequest) returns (RoleIDs) {}
-  rpc GetUserIdsOfUserRole (GetUserIdsOfUserRoleRequest) returns (UserIDs) {}
+  rpc GetRoleIdsOfUserRole (GetRoleIdsOfUserRoleRequest) returns (RoleIds) {}
+  rpc GetUserIdsOfUserRole (GetUserIdsOfUserRoleRequest) returns (UserIds) {}
   rpc DeleteUserRole (DeleteUserRoleRequest) returns (google.protobuf.Empty) {}
 }
 
 service RoomUserService {
   rpc CreateRoomUser (CreateRoomUserRequest) returns (google.protobuf.Empty) {}
-  rpc GetUserIDsOfRoomUser (GetUserIDsOfRoomUserRequest) returns (UserIDs) {}
+  rpc GetUserIdsOfRoomUser (GetUserIdsOfRoomUserRequest) returns (UserIds) {}
   rpc DeleteRoomUser (DeleteRoomUserRequest) returns (google.protobuf.Empty) {}
 }

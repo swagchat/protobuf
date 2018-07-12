@@ -167,12 +167,12 @@ message RoomIDs {
   repeated string roomIDs = 1;
 }
 
-message UserIDs {
-  repeated string userIDs = 1;
+message UserIds {
+  repeated string user_ids = 1;
 }
 
-message RoleIDs {
-  repeated int32 roleIDs = 1;
+message RoleIds {
+  repeated int32 role_ids = 1;
 }
 
 message UserRole {
@@ -183,7 +183,7 @@ message UserRole {
 message CreateUserRoleRequest {
   string workspace = 1;
   string user_id = 11;
-  int32 role_id = 12;
+  repeated int32 role_ids = 12;
 }
 
 message GetUserIdsOfUserRoleRequest {
@@ -203,31 +203,27 @@ message DeleteUserRoleRequest {
 }
 
 message RoomUser {
-  // @inject_tag: db:"room_id"
-  string roomID = 11;
-  // @inject_tag: db:"user_id"
-  string userID = 12;
-  // @inject_tag: db:"unread_count"
-  int32 unreadCount = 13;
-  // @inject_tag: db:"display"
+  string room_id = 11;
+  string user_id = 12;
+  int32 unread_count = 13;
   bool display = 14;
 }
 
 message CreateRoomUserRequest {
   string workspace = 1;
-  string roomID = 11;
-  repeated string userIDs = 12;
+  string room_id = 11;
+  repeated string user_ids = 12;
   bool display = 13;
 }
 
-message GetUserIDsOfRoomUserRequest {
+message GetUserIdsOfRoomUserRequest {
   string workspace = 1;
-  string roomID = 11;
-  repeated int32 roleIDs = 12;
+  string room_id = 11;
+  repeated int32 role_ids = 12;
 }
 
 message DeleteRoomUserRequest {
   string workspace = 1;
-  string roomID = 11;
-  repeated string userIDs = 12;
+  string room_id = 11;
+  repeated string user_ids = 12;
 }
