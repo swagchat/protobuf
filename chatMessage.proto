@@ -182,7 +182,8 @@ message UserRole {
 
 message CreateUserRoleRequest {
   string workspace = 1;
-  UserRole userRole = 11;
+  string user_id = 11;
+  int32 role_id = 12;
 }
 
 message GetUserIdsOfUserRoleRequest {
