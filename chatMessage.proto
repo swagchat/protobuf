@@ -196,6 +196,12 @@ message GetRoleIdsOfUserRoleRequest {
   string user_id = 11;
 }
 
+message DeleteUserRoleRequest {
+  string workspace = 1;
+  string user_id = 11;
+  int32 role_id = 12;
+}
+
 message RoomUser {
   // @inject_tag: db:"room_id"
   string roomID = 11;
