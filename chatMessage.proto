@@ -176,10 +176,8 @@ message RoleIDs {
 }
 
 message UserRole {
-  // @inject_tag: db:"user_id"
-  string userID = 11;
-  // @inject_tag: db:"role_id"
-  int32 roleID = 12;
+  string user_id = 11;
+  int32 role_id = 12;
 }
 
 message CreateUserRoleRequest {
@@ -187,14 +185,14 @@ message CreateUserRoleRequest {
   UserRole userRole = 11;
 }
 
-message GetUserIDsOfUserRoleRequest {
+message GetUserIdsOfUserRoleRequest {
   string workspace = 1;
-  int32 roleID = 12;
+  int32 role_id = 12;
 }
 
-message GetRoleIDsOfUserRoleRequest {
+message GetRoleIdsOfUserRoleRequest {
   string workspace = 1;
-  string userID = 11;
+  string user_id = 11;
 }
 
 message RoomUser {
