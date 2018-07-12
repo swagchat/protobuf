@@ -32,55 +32,14 @@ service UserService {
 }
 
 service UserRoleService {
-  rpc PostUserRole (PostUserRoleReq) returns (UserRole) {
-    option (google.api.http) = {
-      post: "/userRoles"
-      body: "*"
-    };
-  }
-
-  rpc GetRoleIDsOfUserRole (GetRoleIDsOfUserRoleReq) returns (RoleIDs) {
-    option (google.api.http) = {
-      get: "/userRoles/roles"
-    };
-  }
-  
-  rpc GetUserIDsOfUserRole (GetUserIDsOfUserRoleReq) returns (UserIDs) {
-    option (google.api.http) = {
-      get: "/userRoles/users"
-    };
-  }
-
-  rpc DeleteUserRole (UserRole) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      delete: "/userRoles"
-    };
-  }
+  rpc CreateUserRole (CreateUserRoleRequest) returns (UserRole) {}
+  rpc GetRoleIDsOfUserRole (GetRoleIDsOfUserRoleRequest) returns (RoleIDs) {}
+  rpc GetUserIDsOfUserRole (GetUserIDsOfUserRoleRequest) returns (UserIDs) {}
+  rpc DeleteUserRole (UserRole) returns (google.protobuf.Empty) {}
 }
 
 service RoomUserService {
-  rpc PostRoomUser (PostRoomUserReq) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/roomUsers"
-      body: "*"
-    };
-  }
-
-  // rpc GetRoleIDsOfRoomUser (GetRoomIDsOfRoomUserReq) returns (RoleIDs) {
-  //   option (google.api.http) = {
-  //     get: "/roomUsers/roles"
-  //   };
-  // }
-  
-  rpc GetUserIDsOfRoomUser (GetUserIDsOfRoomUserReq) returns (UserIDs) {
-    option (google.api.http) = {
-      get: "/roomUsers/users"
-    };
-  }
-
-  rpc DeleteRoomUser (DeleteRoomUserReq) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      delete: "/roomUsers"
-    };
-  }
+  rpc CreateRoomUser (CreateRoomUserRequest) returns (google.protobuf.Empty) {}
+  rpc GetUserIDsOfRoomUser (GetUserIDsOfRoomUserRequest) returns (UserIDs) {}
+  rpc DeleteRoomUser (DeleteRoomUserRequest) returns (google.protobuf.Empty) {}
 }

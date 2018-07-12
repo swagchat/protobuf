@@ -182,17 +182,17 @@ message UserRole {
   int32 roleID = 12;
 }
 
-message PostUserRoleReq {
+message CreateUserRoleRequest {
   string workspace = 1;
   UserRole userRole = 11;
 }
 
-message GetUserIDsOfUserRoleReq {
+message GetUserIDsOfUserRoleRequest {
   string workspace = 1;
   int32 roleID = 12;
 }
 
-message GetRoleIDsOfUserRoleReq {
+message GetRoleIDsOfUserRoleRequest {
   string workspace = 1;
   string userID = 11;
 }
@@ -208,26 +208,21 @@ message RoomUser {
   bool display = 14;
 }
 
-message PostRoomUserReq {
+message CreateRoomUserRequest {
   string workspace = 1;
   string roomID = 11;
   repeated string userIDs = 12;
   bool display = 13;
 }
 
-message DeleteRoomUserReq {
-  string workspace = 1;
-  string roomID = 11;
-  repeated string userIDs = 12;
-}
-
-message GetRoomIDsOfRoomUserReq {
-  string workspace = 1;
-  string userID = 11;
-}
-
-message GetUserIDsOfRoomUserReq {
+message GetUserIDsOfRoomUserRequest {
   string workspace = 1;
   string roomID = 11;
   repeated int32 roleIDs = 12;
+}
+
+message DeleteRoomUserRequest {
+  string workspace = 1;
+  string roomID = 11;
+  repeated string userIDs = 12;
 }
