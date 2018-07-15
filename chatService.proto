@@ -6,6 +6,7 @@ option go_package = "github.com/swagchat/protobuf";
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 import "chatMessage.proto";
+import "roomMessage.proto";
 
 service  ChatIncoming {
   rpc PostMessage (Message) returns (google.protobuf.Empty) {}
@@ -24,28 +25,4 @@ service ChatOutgoing {
       body: "*"
     };
   }
-}
-
-service UserService {
-  rpc CreateUser (CreateUserRequest) returns (User) {
-    option (google.api.http) = {
-      post: "/users"
-      body: "*"
-    };
-  }
-  rpc GetUser (GetUserRequest) returns (User) {}
-}
-
-service UserRoleService {
-  rpc CreateUserRoles (CreateUserRolesRequest) returns (google.protobuf.Empty) {}
-  rpc GetRoleIdsOfUserRole (GetRoleIdsOfUserRoleRequest) returns (RoleIds) {}
-  rpc GetUserIdsOfUserRole (GetUserIdsOfUserRoleRequest) returns (UserIds) {}
-  rpc DeleteUserRole (DeleteUserRoleRequest) returns (google.protobuf.Empty) {}
-}
-
-service RoomUserService {
-  rpc CreateRoomUsers (CreateRoomUsersRequest) returns (google.protobuf.Empty) {}
-  rpc UpdateRoomUser (UpdateRoomUserRequest) returns (google.protobuf.Empty) {}
-  rpc GetUserIdsOfRoomUser (GetUserIdsOfRoomUserRequest) returns (UserIds) {}
-  rpc DeleteRoomUser (DeleteRoomUserRequest) returns (google.protobuf.Empty) {}
 }

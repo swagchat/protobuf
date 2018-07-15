@@ -1,293 +1,46 @@
-syntax = "proto3";
+syntax = "proto2";
 
 package swagchat.protobuf;
 option go_package = "github.com/swagchat/protobuf";
 
+import "gogoproto/gogo.proto";
+// import "github.com/gogo/protobuf/gogoproto/gogo.proto";
 // import "google/protobuf/struct.proto";
-
-message User {
-  uint64 id = 11;
-  string userId = 12;
-  string name = 13;
-  string pictureUrl = 14;
-  string informationUrl = 15;
-  uint64 unreadCount = 16;
-  map<string, Value> metaData = 17;
-  bool public = 18;
-  bool canBlock = 19;
-  string lang = 20;
-  string accessToken = 21;
-  string lastAccessRoomId = 22;
-  int64 lastAccessed = 23;
-  int64 created = 31;
-  int64 modified = 32;
-  int64 deleted = 33;
-  repeated int32 roles = 40;
-  repeated RoomForUser rooms = 41;
-  repeated Device devices = 42;
-  repeated string blocks = 43;
-}
-
-message CreateUserRequest {
-  string workspace = 1;
-  string user_id = 12;
-  string name = 13;
-  string picture_url = 14;
-  string information_url = 15;
-  map<string, Value> meta_data = 17;
-  bool public = 18;
-  bool can_block = 19;
-  string lang = 20;
-}
-
-message GetUserRequest {
-  string workspace = 1;
-  string userId = 12;
-}
-
-message Device {
-  string workspace = 1;
-  string userID = 11;
-  int32 platform = 12;
-  string token = 13;
-  string notificationDeviceID = 14;
-}
-
-enum RoomType {
-  NONE = 0;
-  OneOnOne = 1;
-  PrivateRoom = 2;
-  PublicRoom = 3;
-  NoticeRoom = 4;
-  RoomTypeEnd = 5;
-}
-
-message RoomForUser {
-  string roomID = 1;
-  string userID = 2;
-  string name = 3;
-  string pictureURL = 4;
-  string informationURL = 5;
-  bytes metaData = 6;
-  RoomType type = 7;
-  string lastMessage = 8;
-  int64 lastMessageUpdated = 9;
-  bool canLeft = 10;
-  int64 created = 11;
-  int64 modified = 12;
-  repeated UserForRoom users = 13;
-  int64 ruUnreadCount = 14;
-}
-
-message UserForRoom {
-  string roomID = 1;
-  string userID = 2;
-  string name = 3;
-  string pictureURL = 4;
-  string informationURL = 5;
-  bytes metaData = 6;
-  bool canBlock = 7;
-  int64 lastAccessed = 8;
-  int64 created = 9;
-  int64 modified = 10;
-  bool ruDisplay = 11;
-}
-
-enum SpeechMode {
-	SpeechModeNone = 0;
-	SpeechModeWakeupWebToWeb = 1;
-	SpeechModeWakeupWebToCloud = 2;
-	SpeechModeWakeupCloudToCloud = 3;
-	SpeechModeAlways = 4;
-	SpeechModeManual = 5;
-	SpeechModeEnd = 6;
-}
-
-message Room {
-  string workspace = 1;
-  uint64 id = 11;
-  string roomId = 12;
-  string userId = 13;
-  string name = 14;
-  string pictureUrl = 15;
-  string informationUrl = 16;
-  bytes MetaData = 17;
-  string AvailableMessageTypes = 18;
-  RoomType type = 19;
-  string WebhookToken = 20;
-  string lastMessage = 21;
-  int64 lastMessageUpdated = 22;
-  int64 messageCount = 23;
-  string notificationTopicId = 24;
-  bool canLeft = 25;
-  SpeechMode  speechMode = 26;
-  int64 created = 30;
-  int64 modified = 31;
-  int64 deleted = 32;
-  repeated UserForRoom users = 40;
-  repeated string userIds = 41;
-}
+// import "google/protobuf/wrappers.proto";
 
 message Messages {
-  int64 allCount = 1;
-  int32 limit = 2;
-  int32 offset = 3;
-  string order = 4;
+  optional int64 allCount = 1;
+  optional int32 limit = 2;
+  optional int32 offset = 3;
+  optional string order = 4;
   repeated Message messages = 5;
 }
 
 message Message {
-  string workspace = 1;
-  string endpoint = 2;
-  string authorization = 3;
+  optional string workspace = 1 [(gogoproto.nullable) = false];
+  optional string endpoint = 2 [(gogoproto.nullable) = false];
+  optional string authorization = 3 [(gogoproto.nullable) = false];
   repeated string userIds = 4;
-  string roomId = 11;
-  string userId = 12;
-  string type = 13;
-  string eventName = 14;
-  MessagePayload payload = 15;
-  int32 role = 16;
-  string WebhookToken = 17;
-  int64 created = 30;
-  int64 modified = 31;
+  optional string roomId = 11 [(gogoproto.nullable) = false];
+  optional string userId = 12 [(gogoproto.nullable) = false];
+  optional string type = 13 [(gogoproto.nullable) = false];
+  optional string eventName = 14 [(gogoproto.nullable) = false];
+  optional MessagePayload payload = 15;
+  optional int32 role = 16 [(gogoproto.nullable) = false];
+  optional string WebhookToken = 17 [(gogoproto.nullable) = false];
+  optional int64 created = 30 [(gogoproto.nullable) = false];
+  optional int64 modified = 31 [(gogoproto.nullable) = false];
 }
 
 message MessagePayload {
   // text
-  string text = 1;
+  optional string text = 1 [(gogoproto.nullable) = false];
 
   // image
-  string mime = 11;
-  string filename = 12;
-  string sourceUrl = 13;
-  string thumbnailUrl = 14;
-  int32 width = 15;
-  int32 height = 16;
-}
-
-message RoomIds {
-  repeated string room_ids = 1;
-}
-
-message UserIds {
-  repeated string user_ids = 1;
-}
-
-message RoleIds {
-  repeated int32 role_ids = 1;
-}
-
-message UserRole {
-  string user_id = 11;
-  int32 role_id = 12;
-}
-
-message CreateUserRolesRequest {
-  string workspace = 1;
-  string user_id = 11;
-  repeated int32 role_ids = 12;
-}
-
-message GetUserIdsOfUserRoleRequest {
-  string workspace = 1;
-  int32 role_id = 12;
-}
-
-message GetRoleIdsOfUserRoleRequest {
-  string workspace = 1;
-  string user_id = 11;
-}
-
-message DeleteUserRoleRequest {
-  string workspace = 1;
-  string user_id = 11;
-  int32 role_id = 12;
-}
-
-message RoomUser {
-  string room_id = 11;
-  string user_id = 12;
-  int32 unread_count = 13;
-  bool display = 14;
-}
-
-message CreateRoomUsersRequest {
-  string workspace = 1;
-  string room_id = 11;
-  repeated string user_ids = 12;
-  bool display = 13;
-}
-
-message UpdateRoomUserRequest {
-  string workspace = 1;
-  string room_id = 11;
-  string user_id = 12;
-  int32 unread_count = 13;
-  bool display = 14;
-}
-
-message GetUserIdsOfRoomUserRequest {
-  string workspace = 1;
-  string room_id = 11;
-  repeated int32 role_ids = 12;
-}
-
-message DeleteRoomUserRequest {
-  string workspace = 1;
-  string room_id = 11;
-  repeated string user_ids = 12;
-}
-
-// `Struct` represents a structured data value, consisting of fields
-// which map to dynamically typed values. In some languages, `Struct`
-// might be supported by a native representation. For example, in
-// scripting languages like JS a struct is represented as an
-// object. The details of that representation are described together
-// with the proto support for the language.
-//
-// The JSON representation for `Struct` is JSON object.
-message Struct {
-  // Unordered map of dynamically typed values.
-  map<string, Value> fields = 1;
-}
-
-// `Value` represents a dynamically typed value which can be either
-// null, a number, a string, a boolean, a recursive struct value, or a
-// list of values. A producer of value is expected to set one of that
-// variants, absence of any variant indicates an error.
-//
-// The JSON representation for `Value` is JSON value.
-message Value {
-  // The kind of value.
-  oneof kind {
-    // Represents a null value.
-    NullValue null_value = 1;
-    // Represents a double value.
-    double number_value = 2;
-    // Represents a string value.
-    string string_value = 3;
-    // Represents a boolean value.
-    bool bool_value = 4;
-    // Represents a structured value.
-    Struct struct_value = 5;
-    // Represents a repeated `Value`.
-    ListValue list_value = 6;
-  }
-}
-
-// `NullValue` is a singleton enumeration to represent the null value for the
-// `Value` type union.
-//
-//  The JSON representation for `NullValue` is JSON `null`.
-enum NullValue {
-  // Null value.
-  NULL_VALUE = 0;
-}
-
-// `ListValue` is a wrapper around a repeated field of values.
-//
-// The JSON representation for `ListValue` is JSON array.
-message ListValue {
-  // Repeated field of dynamically typed values.
-  repeated Value values = 1;
+  optional string mime = 11 [(gogoproto.nullable) = false];
+  optional string filename = 12 [(gogoproto.nullable) = false];
+  optional string sourceUrl = 13 [(gogoproto.nullable) = false];
+  optional string thumbnailUrl = 14 [(gogoproto.nullable) = false];
+  optional int32 width = 15 [(gogoproto.nullable) = false];
+  optional int32 height = 16 [(gogoproto.nullable) = false];
 }
