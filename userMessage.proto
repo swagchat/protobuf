@@ -30,8 +30,8 @@ message User {
   optional int64 modified = 32 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"modified\""];
   optional int64 deleted = 33 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"deleted\""];
   repeated int32 roles = 40 [(gogoproto.moretags) = "db:\"-\""];
-  repeated RoomForUser rooms = 41 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"-\""];
-  repeated Device devices = 42 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"-\""];
+  repeated RoomForUser rooms = 41 [(gogoproto.moretags) = "db:\"-\""];
+  repeated Device devices = 42 [(gogoproto.moretags) = "db:\"-\""];
   repeated string blocks = 43 [(gogoproto.moretags) = "db:\"-\""];
 }
 
@@ -54,6 +54,7 @@ message RoomForUser {
 }
 
 message CreateUserRequest {
+  option (gogoproto.goproto_unrecognized) = false;
   optional string workspace = 1 [(gogoproto.nullable) = false];
   optional string user_id = 11 [(gogoproto.customname) = "UserID", (gogoproto.nullable) = false, (gogoproto.jsontag) = "userId"];
   optional string name = 12 [(gogoproto.nullable) = false];
@@ -66,7 +67,8 @@ message CreateUserRequest {
 }
 
 message GetUserRequest {
+  option (gogoproto.goproto_unrecognized) = false;
   optional string workspace = 1 [(gogoproto.nullable) = false];
-  optional string userId = 12 [(gogoproto.nullable) = false];
+  optional string user_id = 11 [(gogoproto.customname) = "UserID", (gogoproto.nullable) = false, (gogoproto.jsontag) = "userId"];
 }
 
