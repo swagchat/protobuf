@@ -10,6 +10,8 @@ protoc \
   -I$GOPATH/src/github.com/gogo/protobuf \
   --gogo_out=plugins=grpc:../../../ \
   --grpc-gateway_out=logtostderr=true:../../../ \
+  guestMessage.proto \
+  guestService.proto \
   messageMessage.proto \
   messageService.proto \
   deviceMessage.proto \
@@ -21,5 +23,6 @@ protoc \
   userMessage.proto \
   userService.proto \
   userRoleMessage.proto \
-  userRoleService.proto
+  userRoleService.proto \
+  webhookService.proto
 

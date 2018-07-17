@@ -60,6 +60,7 @@ message CreateUserRequest {
   optional bool public = 16;
   optional bool can_block = 17 [(gogoproto.jsontag) = "canBlock,omitempty"];
   optional string lang = 18 [(gogoproto.nullable) = false];
+  repeated int32 role_ids = 19 [(gogoproto.customname) = "RoleIDs", (gogoproto.jsontag) = "roleIds,omitempty", (gogoproto.moretags) = "db:\"-\""];
 }
 
 message GetUsersRequest {
