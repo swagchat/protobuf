@@ -5,7 +5,7 @@ option go_package = "github.com/swagchat/protobuf";
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
-import "chatMessage.proto";
+import "messageMessage.proto";
 import "roomMessage.proto";
 
 service  ChatIncoming {

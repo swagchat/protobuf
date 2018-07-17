@@ -12,5 +12,5 @@ service UserRoleService {
   rpc CreateUserRoles (CreateUserRolesRequest) returns (google.protobuf.Empty) {}
   rpc GetRoleIdsOfUserRole (GetRoleIdsOfUserRoleRequest) returns (RoleIds) {}
   rpc GetUserIdsOfUserRole (GetUserIdsOfUserRoleRequest) returns (UserIds) {}
-  rpc DeleteUserRole (DeleteUserRoleRequest) returns (google.protobuf.Empty) {}
+  rpc DeleteUserRoles (DeleteUserRolesRequest) returns (google.protobuf.Empty) {}
 }

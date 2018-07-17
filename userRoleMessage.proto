@@ -27,8 +27,8 @@ message GetRoleIdsOfUserRoleRequest {
   string user_id = 11 [(gogoproto.customname) = "UserID", (gogoproto.jsontag) = "userId"];
 }
 
-message DeleteUserRoleRequest {
+message DeleteUserRolesRequest {
   string workspace = 1 [(gogoproto.jsontag) = "workspace,omitempty", (gogoproto.moretags) = "db:\"-\""];
   string user_id = 11 [(gogoproto.customname) = "UserID", (gogoproto.jsontag) = "userId"];
-  int32 role_id = 12 [(gogoproto.customname) = "RoleID", (gogoproto.jsontag) = "roleId"];
+  repeated int32 role_ids = 12 [(gogoproto.customname) = "RoleIDs", (gogoproto.jsontag) = "roleIds"];
 }

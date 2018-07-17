@@ -10,7 +10,7 @@ import "commonMessage.proto";
 
 service RoomUserService {
   rpc CreateRoomUsers (CreateRoomUsersRequest) returns (google.protobuf.Empty) {}
-  rpc UpdateRoomUser (UpdateRoomUserRequest) returns (google.protobuf.Empty) {}
   rpc GetUserIdsOfRoomUser (GetUserIdsOfRoomUserRequest) returns (UserIds) {}
+  rpc UpdateRoomUser (UpdateRoomUserRequest) returns (google.protobuf.Empty) {}
   rpc DeleteRoomUsers (DeleteRoomUsersRequest) returns (google.protobuf.Empty) {}
 }
