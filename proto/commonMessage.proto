@@ -19,9 +19,9 @@ message RoleIds {
 
 message ErrorResponse {
 	string message = 1;
-	string developer_message = 2 [(gogoproto.jsontag) = "developerMessage"];
+	string developer_message = 2 [(gogoproto.jsontag) = "developerMessage,omitempty"];
 	string info = 3;
-	repeated InvalidParam invalid_params = 4 [(gogoproto.jsontag) = "invalidParams"];
+	repeated InvalidParam invalid_params = 4 [(gogoproto.jsontag) = "invalidParams,omitempty"];
 }
 
 message InvalidParam {

@@ -42,7 +42,7 @@ message RoomForUser {
   optional RoomType type = 7 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"type\""];
   optional string last_message = 8 [(gogoproto.nullable) = false, (gogoproto.jsontag) = "lastMessage",  (gogoproto.moretags) = "db:\"last_message\""];
   optional int64 last_message_updated = 9 [(gogoproto.nullable) = false, (gogoproto.jsontag) = "lastMessageUpdated",  (gogoproto.moretags) = "db:\"last_message_updated\""];
-  optional bool can_left = 10 [(gogoproto.jsontag) = "canLeft", (gogoproto.moretags) = "db:\"can_left\""];
+  optional bool can_left = 10 [(gogoproto.nullable) = false, (gogoproto.jsontag) = "canLeft", (gogoproto.moretags) = "db:\"can_left\""];
   optional int64 created = 21 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"created\""];
   optional int64 modified = 22 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"modified\""];
   repeated UserForRoom users = 13 [(gogoproto.moretags) = "db:\"-\""];
@@ -51,21 +51,21 @@ message RoomForUser {
 
 message CreateUserRequest {
   option (gogoproto.goproto_unrecognized) = false;
-  optional string workspace = 1 [(gogoproto.nullable) = false];
+  optional string workspace = 1 [(gogoproto.nullable) = false, (gogoproto.jsontag) = "-"];
   optional string user_id = 11 [(gogoproto.customname) = "UserID", (gogoproto.nullable) = false, (gogoproto.jsontag) = "userId"];
   optional string name = 12 [(gogoproto.nullable) = false];
   optional string picture_url = 13 [(gogoproto.customname) = "PictureURL", (gogoproto.nullable) = false, (gogoproto.jsontag) = "pictureUrl"];
   optional string information_url = 14 [(gogoproto.customname) = "InformationURL", (gogoproto.nullable) = false, (gogoproto.jsontag) = "informationUrl"];
   optional bytes meta_data = 15 [(gogoproto.jsontag) = "metaData"];
-  optional bool public = 16;
-  optional bool can_block = 17 [(gogoproto.jsontag) = "canBlock,omitempty"];
+  optional bool public = 16 [(gogoproto.nullable) = false];
+  optional bool can_block = 17 [(gogoproto.nullable) = false, (gogoproto.jsontag) = "canBlock,omitempty"];
   optional string lang = 18 [(gogoproto.nullable) = false];
   repeated int32 role_ids = 19 [(gogoproto.customname) = "RoleIDs", (gogoproto.jsontag) = "roleIds,omitempty", (gogoproto.moretags) = "db:\"-\""];
 }
 
 message GetUsersRequest {
   option (gogoproto.goproto_unrecognized) = false;
-  optional string workspace = 1 [(gogoproto.nullable) = false];
+  optional string workspace = 1 [(gogoproto.nullable) = false, (gogoproto.jsontag) = "-"];
   optional int32 limit = 11 [(gogoproto.nullable) = false];
   optional int32 offset = 12 [(gogoproto.nullable) = false];
   optional string order = 13 [(gogoproto.nullable) = false];
@@ -73,7 +73,7 @@ message GetUsersRequest {
 
 message UsersResponse {
   option (gogoproto.goproto_unrecognized) = false;
-  repeated User users = 1 [(gogoproto.jsontag) = "-"];
+  repeated User users = 1 [(gogoproto.jsontag) = "users"];
   optional int64 allCount = 2 [(gogoproto.nullable) = false, (gogoproto.jsontag) = "allCount"];
   optional int32 limit = 3 [(gogoproto.nullable) = false];
   optional int32 offset = 4 [(gogoproto.nullable) = false];
@@ -82,32 +82,32 @@ message UsersResponse {
 
 message GetUserRequest {
   option (gogoproto.goproto_unrecognized) = false;
-  optional string workspace = 1 [(gogoproto.nullable) = false];
+  optional string workspace = 1 [(gogoproto.nullable) = false, (gogoproto.jsontag) = "-"];
   optional string user_id = 11 [(gogoproto.customname) = "UserID", (gogoproto.nullable) = false, (gogoproto.jsontag) = "userId"];
 }
 
 message UpdateUserRequest {
   option (gogoproto.goproto_unrecognized) = false;
-  optional string workspace = 1 [(gogoproto.nullable) = false];
-  optional string user_id = 12 [(gogoproto.customname) = "UserID", (gogoproto.nullable) = false, (gogoproto.jsontag) = "userId", (gogoproto.moretags) = "db:\"user_id\""];
-  optional string name = 13 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"name\""];
-  optional string picture_url = 14 [(gogoproto.customname) = "PictureURL", (gogoproto.nullable) = false, (gogoproto.jsontag) = "pictureUrl", (gogoproto.moretags) = "db:\"picture_url\""];
-  optional string information_url = 15 [(gogoproto.customname) = "InformationURL", (gogoproto.nullable) = false, (gogoproto.jsontag) = "informationUrl", (gogoproto.moretags) = "db:\"information_url\""];
+  optional string workspace = 1 [(gogoproto.nullable) = false, (gogoproto.jsontag) = "-"];
+  optional string user_id = 11 [(gogoproto.customname) = "UserID", (gogoproto.nullable) = false, (gogoproto.jsontag) = "userId"];
+  optional string name = 13 [(gogoproto.moretags) = "db:\"name\""];
+  optional string picture_url = 14 [(gogoproto.customname) = "PictureURL", (gogoproto.jsontag) = "pictureUrl", (gogoproto.moretags) = "db:\"picture_url\""];
+  optional string information_url = 15 [(gogoproto.customname) = "InformationURL", (gogoproto.jsontag) = "informationUrl", (gogoproto.moretags) = "db:\"information_url\""];
   optional bytes meta_data = 17 [(gogoproto.jsontag) = "metaData", (gogoproto.moretags) = "db:\"meta_data\""];
   optional bool public = 18 [(gogoproto.moretags) = "db:\"public\""];
   optional bool can_block = 19 [(gogoproto.jsontag) = "canBlock,omitempty", (gogoproto.moretags) = "db:\"can_block\""];
-  optional string lang = 20 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"lang\""];
+  optional string lang = 20 [(gogoproto.moretags) = "db:\"lang\""];
 }
 
 message DeleteUserRequest {
   option (gogoproto.goproto_unrecognized) = false;
-  optional string workspace = 1 [(gogoproto.nullable) = false];
+  optional string workspace = 1 [(gogoproto.nullable) = false, (gogoproto.jsontag) = "-"];
   optional string user_id = 11 [(gogoproto.customname) = "UserID", (gogoproto.nullable) = false, (gogoproto.jsontag) = "userId"];
 }
 
 message GetContactsRequest {
   option (gogoproto.goproto_unrecognized) = false;
-  optional string workspace = 1 [(gogoproto.nullable) = false];
+  optional string workspace = 1 [(gogoproto.nullable) = false, (gogoproto.jsontag) = "-"];
   optional string user_id = 11 [(gogoproto.customname) = "UserID", (gogoproto.nullable) = false, (gogoproto.jsontag) = "userId", (gogoproto.moretags) = "db:\"user_id\""];
   optional int32 limit = 12 [(gogoproto.nullable) = false];
   optional int32 offset = 13 [(gogoproto.nullable) = false];
@@ -116,6 +116,6 @@ message GetContactsRequest {
 
 message GetProfileRequest {
   option (gogoproto.goproto_unrecognized) = false;
-  optional string workspace = 1 [(gogoproto.nullable) = false];
+  optional string workspace = 1 [(gogoproto.nullable) = false, (gogoproto.jsontag) = "-"];
   optional string user_id = 11 [(gogoproto.customname) = "UserID", (gogoproto.nullable) = false, (gogoproto.jsontag) = "userId"];
 }
