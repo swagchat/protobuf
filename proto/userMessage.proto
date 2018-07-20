@@ -80,7 +80,6 @@ message UsersResponse {
 
 message GetUserRequest {
   option (gogoproto.goproto_unrecognized) = false;
-  optional string workspace = 1 [(gogoproto.nullable) = false, (gogoproto.jsontag) = "-"];
   optional string user_id = 11 [(gogoproto.customname) = "UserID", (gogoproto.nullable) = false, (gogoproto.jsontag) = "userId"];
 }
 
@@ -98,7 +97,6 @@ message UpdateUserRequest {
 
 message DeleteUserRequest {
   option (gogoproto.goproto_unrecognized) = false;
-  optional string workspace = 1 [(gogoproto.nullable) = false, (gogoproto.jsontag) = "-"];
   optional string user_id = 11 [(gogoproto.customname) = "UserID", (gogoproto.nullable) = false, (gogoproto.jsontag) = "userId"];
 }
 
