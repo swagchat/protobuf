@@ -9,6 +9,7 @@ import "gogoproto/gogo.proto";
 // import "google/protobuf/wrappers.proto";
 
 message Messages {
+  option (gogoproto.goproto_unrecognized) = false;
   repeated Message messages = 1;
   optional int64 allCount = 2;
   optional int32 limit = 3;
@@ -31,6 +32,8 @@ message Message{
 }
 
 message MessagePayload {
+  option (gogoproto.goproto_unrecognized) = false;
+
   // text
   optional string text = 1 [(gogoproto.nullable) = false];
 
