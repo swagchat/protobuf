@@ -24,7 +24,7 @@ message Message{
   optional string room_id = 13 [(gogoproto.customname) = "RoomID", (gogoproto.nullable) = false, (gogoproto.jsontag) = "roomId", (gogoproto.moretags) = "db:\"room_id\""];
   optional string user_id = 14 [(gogoproto.customname) = "UserID", (gogoproto.nullable) = false, (gogoproto.jsontag) = "userId", (gogoproto.moretags) = "db:\"user_id\""];
   optional string type = 15 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"type\""];
-  optional MessagePayload payload = 16 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"payload\""];
+  optional MessagePayload payload = 16 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"-\""];
   optional int32 role = 17 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"role\""];
   optional int64 created = 30 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"created\""];
   optional int64 modified = 31 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"modified\""];
