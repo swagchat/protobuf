@@ -28,6 +28,7 @@ message Message{
   optional int32 role = 17 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"role\""];
   optional int64 created = 30 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"created\""];
   optional int64 modified = 31 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"modified\""];
+  optional int64 deleted = 32 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"deleted\""];
   optional string event_name = 41 [(gogoproto.nullable) = false, (gogoproto.jsontag) = "eventName", (gogoproto.moretags) = "db:\"-\""];
   repeated string user_ids = 42 [(gogoproto.customname) = "UserIDs", (gogoproto.jsontag) = "userIds", (gogoproto.moretags) = "db:\"-\""];
 }
