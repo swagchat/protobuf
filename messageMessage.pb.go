@@ -32,6 +32,11 @@ It has these top-level messages:
 	Room
 	UserForRoom
 	CreateRoomRequest
+	GetRoomsRequest
+	RoomsResponse
+	GetRoomRequest
+	UpdateRoomRequest
+	DeleteRoomRequest
 	RoomUser
 	CreateRoomUsersRequest
 	UpdateRoomUserRequest
