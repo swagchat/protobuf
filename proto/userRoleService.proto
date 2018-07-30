@@ -10,7 +10,7 @@ import "commonMessage.proto";
 
 service UserRoleService {
   rpc CreateUserRoles (CreateUserRolesRequest) returns (google.protobuf.Empty) {}
-  rpc GetRoleIdsOfUserRole (GetRoleIdsOfUserRoleRequest) returns (RoleIds) {}
+  // rpc GetRoleIdsOfUserRole (GetRoleIdsOfUserRoleRequest) returns (RoleIds) {}
   rpc GetUserIdsOfUserRole (GetUserIdsOfUserRoleRequest) returns (UserIds) {}
   rpc DeleteUserRoles (DeleteUserRolesRequest) returns (google.protobuf.Empty) {}
 }
