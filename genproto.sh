@@ -1,8 +1,8 @@
 #!/bin/bash
 
-rm -f ./*.gw.go
-rm -f ./*.pb.go
-rm -f ./*.gen.go
+rm -f ./protoc-gen-go/*
+rm -f ./protoc-gen-js/*pb.js
+rm -f ./protoc-gen-js/*pb.d.ts
 
 protoc \
   -I./proto \
@@ -10,6 +10,8 @@ protoc \
   -I$GOPATH/src/github.com/gogo/protobuf \
   --gogo_out=plugins=grpc:../../../ \
   --grpc-gateway_out=logtostderr=true:../../../ \
+  --js_out=import_style=closure,library=swagchatpb,binary:./protoc-gen-js/ \
+  --ts_out=./protoc-gen-js/ \
   messageMessage.proto \
   messageService.proto \
   deviceMessage.proto \
@@ -23,4 +25,3 @@ protoc \
   userRoleMessage.proto \
   userRoleService.proto \
   webhookService.proto
-
