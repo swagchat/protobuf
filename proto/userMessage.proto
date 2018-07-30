@@ -1,7 +1,7 @@
 syntax = "proto2";
 
 package swagchat.protobuf;
-option go_package = "github.com/swagchat/protobuf";
+option go_package = "github.com/swagchat/protobuf/protoc-gen-go";
 
 import "gogoproto/gogo.proto";
 import "deviceMessage.proto";

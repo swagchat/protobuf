@@ -2,11 +2,11 @@
 // source: webhookService.proto
 
 /*
-Package protobuf is a reverse proxy.
+Package protoc_gen_go is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package protobuf
+package protoc_gen_go
 
 import (
 	"io"
