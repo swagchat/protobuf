@@ -6,11 +6,10 @@ option go_package = "github.com/swagchat/protobuf/protoc-gen-go";
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 import "roomUserMessage.proto";
-import "commonMessage.proto";
 
 service RoomUserService {
   rpc CreateRoomUsers (CreateRoomUsersRequest) returns (google.protobuf.Empty) {}
-  rpc GetUserIdsOfRoomUser (GetUserIdsOfRoomUserRequest) returns (UserIds) {}
+  rpc GetRoomUsers (GetRoomUsersRequest) returns (RoomUsersResponse) {}
   rpc UpdateRoomUser (UpdateRoomUserRequest) returns (google.protobuf.Empty) {}
   rpc DeleteRoomUsers (DeleteRoomUsersRequest) returns (google.protobuf.Empty) {}
 }

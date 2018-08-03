@@ -8,8 +8,8 @@ export class UserRole extends jspb.Message {
   getUserId(): string;
   setUserId(value: string): void;
 
-  getRoleId(): number;
-  setRoleId(value: number): void;
+  getRole(): number;
+  setRole(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UserRole.AsObject;
@@ -24,7 +24,7 @@ export class UserRole extends jspb.Message {
 export namespace UserRole {
   export type AsObject = {
     userId: string,
-    roleId: number,
+    role: number,
   }
 }
 
@@ -32,10 +32,10 @@ export class CreateUserRolesRequest extends jspb.Message {
   getUserId(): string;
   setUserId(value: string): void;
 
-  clearRoleIdsList(): void;
-  getRoleIdsList(): Array<number>;
-  setRoleIdsList(value: Array<number>): void;
-  addRoleIds(value: number, index?: number): number;
+  clearRolesList(): void;
+  getRolesList(): Array<number>;
+  setRolesList(value: Array<number>): void;
+  addRoles(value: number, index?: number): number;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateUserRolesRequest.AsObject;
@@ -50,27 +50,7 @@ export class CreateUserRolesRequest extends jspb.Message {
 export namespace CreateUserRolesRequest {
   export type AsObject = {
     userId: string,
-    roleIdsList: Array<number>,
-  }
-}
-
-export class GetUserIdsOfUserRoleRequest extends jspb.Message {
-  getRoleId(): number;
-  setRoleId(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetUserIdsOfUserRoleRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetUserIdsOfUserRoleRequest): GetUserIdsOfUserRoleRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetUserIdsOfUserRoleRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetUserIdsOfUserRoleRequest;
-  static deserializeBinaryFromReader(message: GetUserIdsOfUserRoleRequest, reader: jspb.BinaryReader): GetUserIdsOfUserRoleRequest;
-}
-
-export namespace GetUserIdsOfUserRoleRequest {
-  export type AsObject = {
-    roleId: number,
+    rolesList: Array<number>,
   }
 }
 
@@ -78,10 +58,10 @@ export class DeleteUserRolesRequest extends jspb.Message {
   getUserId(): string;
   setUserId(value: string): void;
 
-  clearRoleIdsList(): void;
-  getRoleIdsList(): Array<number>;
-  setRoleIdsList(value: Array<number>): void;
-  addRoleIds(value: number, index?: number): number;
+  clearRolesList(): void;
+  getRolesList(): Array<number>;
+  setRolesList(value: Array<number>): void;
+  addRoles(value: number, index?: number): number;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteUserRolesRequest.AsObject;
@@ -96,7 +76,7 @@ export class DeleteUserRolesRequest extends jspb.Message {
 export namespace DeleteUserRolesRequest {
   export type AsObject = {
     userId: string,
-    roleIdsList: Array<number>,
+    rolesList: Array<number>,
   }
 }
 

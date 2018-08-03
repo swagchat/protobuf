@@ -100,9 +100,9 @@ export class Room extends jspb.Message {
   setDeleted(value: number): void;
 
   clearUsersList(): void;
-  getUsersList(): Array<UserForRoom>;
-  setUsersList(value: Array<UserForRoom>): void;
-  addUsers(value?: UserForRoom, index?: number): UserForRoom;
+  getUsersList(): Array<MiniUser>;
+  setUsersList(value: Array<MiniUser>): void;
+  addUsers(value?: MiniUser, index?: number): MiniUser;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Room.AsObject;
@@ -134,16 +134,11 @@ export namespace Room {
     created?: number,
     modified?: number,
     deleted?: number,
-    usersList: Array<UserForRoom.AsObject>,
+    usersList: Array<MiniUser.AsObject>,
   }
 }
 
-export class UserForRoom extends jspb.Message {
-  hasRoomId(): boolean;
-  clearRoomId(): void;
-  getRoomId(): string | undefined;
-  setRoomId(value: string): void;
-
+export class MiniUser extends jspb.Message {
   hasUserId(): boolean;
   clearUserId(): void;
   getUserId(): string | undefined;
@@ -197,18 +192,17 @@ export class UserForRoom extends jspb.Message {
   setModified(value: number): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UserForRoom.AsObject;
-  static toObject(includeInstance: boolean, msg: UserForRoom): UserForRoom.AsObject;
+  toObject(includeInstance?: boolean): MiniUser.AsObject;
+  static toObject(includeInstance: boolean, msg: MiniUser): MiniUser.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: UserForRoom, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UserForRoom;
-  static deserializeBinaryFromReader(message: UserForRoom, reader: jspb.BinaryReader): UserForRoom;
+  static serializeBinaryToWriter(message: MiniUser, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MiniUser;
+  static deserializeBinaryFromReader(message: MiniUser, reader: jspb.BinaryReader): MiniUser;
 }
 
-export namespace UserForRoom {
+export namespace MiniUser {
   export type AsObject = {
-    roomId?: string,
     userId?: string,
     name?: string,
     pictureUrl?: string,
@@ -327,11 +321,6 @@ export class GetRoomsRequest extends jspb.Message {
   getUserId(): string | undefined;
   setUserId(value: string): void;
 
-  hasFilter(): boolean;
-  clearFilter(): void;
-  getFilter(): RoomsFilter | undefined;
-  setFilter(value: RoomsFilter): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetRoomsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetRoomsRequest): GetRoomsRequest.AsObject;
@@ -348,7 +337,6 @@ export namespace GetRoomsRequest {
     offset?: number,
     ordersList: Array<commonMessage_pb.OrderInfo.AsObject>,
     userId?: string,
-    filter?: RoomsFilter,
   }
 }
 
@@ -625,12 +613,11 @@ export namespace RoomMessagesResponse {
 }
 
 export enum RoomType {
-  NONE = 0,
-  ONEONONE = 1,
-  PRIVATEROOM = 2,
-  PUBLICROOM = 3,
-  NOTICEROOM = 4,
-  ROOMTYPEEND = 5,
+  ROOMTYPENONE = 0,
+  ROOMTYPEONEONONE = 1,
+  ROOMTYPEPRIVATEROOM = 2,
+  ROOMTYPEPUBLICROOM = 3,
+  ROOMTYPENOTICEROOM = 4,
 }
 
 export enum SpeechMode {
@@ -641,10 +628,5 @@ export enum SpeechMode {
   SPEECHMODEALWAYS = 4,
   SPEECHMODEMANUAL = 5,
   SPEECHMODEEND = 6,
-}
-
-export enum RoomsFilter {
-  ONLINE = 0,
-  UNREAD = 1,
 }
 

@@ -198,3 +198,63 @@ export namespace MessagePayload {
   }
 }
 
+export class CreateMessageRequest extends jspb.Message {
+  hasMessageId(): boolean;
+  clearMessageId(): void;
+  getMessageId(): string | undefined;
+  setMessageId(value: string): void;
+
+  hasRoomId(): boolean;
+  clearRoomId(): void;
+  getRoomId(): string | undefined;
+  setRoomId(value: string): void;
+
+  hasUserId(): boolean;
+  clearUserId(): void;
+  getUserId(): string | undefined;
+  setUserId(value: string): void;
+
+  hasType(): boolean;
+  clearType(): void;
+  getType(): string | undefined;
+  setType(value: string): void;
+
+  hasPayload(): boolean;
+  clearPayload(): void;
+  getPayload(): Uint8Array | string;
+  getPayload_asU8(): Uint8Array;
+  getPayload_asB64(): string;
+  setPayload(value: Uint8Array | string): void;
+
+  hasRole(): boolean;
+  clearRole(): void;
+  getRole(): number | undefined;
+  setRole(value: number): void;
+
+  hasEventName(): boolean;
+  clearEventName(): void;
+  getEventName(): string | undefined;
+  setEventName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateMessageRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateMessageRequest): CreateMessageRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateMessageRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateMessageRequest;
+  static deserializeBinaryFromReader(message: CreateMessageRequest, reader: jspb.BinaryReader): CreateMessageRequest;
+}
+
+export namespace CreateMessageRequest {
+  export type AsObject = {
+    messageId?: string,
+    roomId?: string,
+    userId?: string,
+    type?: string,
+    payload: Uint8Array | string,
+    role?: number,
+    eventName?: string,
+  }
+}
+

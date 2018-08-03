@@ -3,6 +3,7 @@
 
 import * as jspb from "google-protobuf";
 import * as gogoproto_gogo_pb from "./gogoproto/gogo_pb";
+import * as commonMessage_pb from "./commonMessage_pb";
 
 export class RoomUser extends jspb.Message {
   hasRoomId(): boolean;
@@ -78,7 +79,7 @@ export namespace CreateRoomUsersRequest {
   }
 }
 
-export class GetUserIdsOfRoomUserRequest extends jspb.Message {
+export class GetRoomUsersRequest extends jspb.Message {
   hasRoomId(): boolean;
   clearRoomId(): void;
   getRoomId(): string | undefined;
@@ -89,20 +90,54 @@ export class GetUserIdsOfRoomUserRequest extends jspb.Message {
   setRoleIdsList(value: Array<number>): void;
   addRoleIds(value: number, index?: number): number;
 
+  hasResponseType(): boolean;
+  clearResponseType(): void;
+  getResponseType(): commonMessage_pb.ResponseType | undefined;
+  setResponseType(value: commonMessage_pb.ResponseType): void;
+
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetUserIdsOfRoomUserRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetUserIdsOfRoomUserRequest): GetUserIdsOfRoomUserRequest.AsObject;
+  toObject(includeInstance?: boolean): GetRoomUsersRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetRoomUsersRequest): GetRoomUsersRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetUserIdsOfRoomUserRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetUserIdsOfRoomUserRequest;
-  static deserializeBinaryFromReader(message: GetUserIdsOfRoomUserRequest, reader: jspb.BinaryReader): GetUserIdsOfRoomUserRequest;
+  static serializeBinaryToWriter(message: GetRoomUsersRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetRoomUsersRequest;
+  static deserializeBinaryFromReader(message: GetRoomUsersRequest, reader: jspb.BinaryReader): GetRoomUsersRequest;
 }
 
-export namespace GetUserIdsOfRoomUserRequest {
+export namespace GetRoomUsersRequest {
   export type AsObject = {
     roomId?: string,
     roleIdsList: Array<number>,
+    responseType?: commonMessage_pb.ResponseType,
+  }
+}
+
+export class RoomUsersResponse extends jspb.Message {
+  clearUsersList(): void;
+  getUsersList(): Array<RoomUser>;
+  setUsersList(value: Array<RoomUser>): void;
+  addUsers(value?: RoomUser, index?: number): RoomUser;
+
+  clearUserIdsList(): void;
+  getUserIdsList(): Array<string>;
+  setUserIdsList(value: Array<string>): void;
+  addUserIds(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RoomUsersResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: RoomUsersResponse): RoomUsersResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RoomUsersResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RoomUsersResponse;
+  static deserializeBinaryFromReader(message: RoomUsersResponse, reader: jspb.BinaryReader): RoomUsersResponse;
+}
+
+export namespace RoomUsersResponse {
+  export type AsObject = {
+    usersList: Array<RoomUser.AsObject>,
+    userIdsList: Array<string>,
   }
 }
 

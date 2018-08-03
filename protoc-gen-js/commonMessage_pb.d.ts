@@ -152,6 +152,11 @@ export namespace OrderInfo {
   }
 }
 
+export enum ResponseType {
+  USERIDLIST = 0,
+  USERLIST = 1,
+}
+
 export enum Order {
   ASC = 0,
   DESC = 1,

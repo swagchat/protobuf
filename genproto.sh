@@ -12,10 +12,13 @@ protoc \
   --grpc-gateway_out=logtostderr=true:../../../ \
   --js_out=import_style=closure,library=swagchatpb,binary:./protoc-gen-js/ \
   --ts_out=./protoc-gen-js/ \
+  blockUserMessage.proto \
+  blockUserService.proto \
+  commonMessage.proto \
+  deviceMessage.proto \
+  deviceService.proto \
   messageMessage.proto \
   messageService.proto \
-  deviceMessage.proto \
-  commonMessage.proto \
   roomMessage.proto \
   roomService.proto \
   roomUserMessage.proto \
