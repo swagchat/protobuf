@@ -5,11 +5,6 @@ option go_package = "github.com/swagchat/protobuf/protoc-gen-go";
 
 import "gogoproto/gogo.proto";
 
-enum ResponseType {
-  UserIdList = 0;
-  UserList = 1;
-}
-
 message RoomIds {
   option (gogoproto.goproto_unrecognized) = false;
   repeated string room_ids = 1 [(gogoproto.customname) = "RoomIDs", (gogoproto.jsontag) = "roomIds,omitempty"];

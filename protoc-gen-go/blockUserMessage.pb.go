@@ -62,6 +62,7 @@
 		CreateRoomUsersRequest
 		GetRoomUsersRequest
 		RoomUsersResponse
+		RoomUserIdsResponse
 		UpdateRoomUserRequest
 		DeleteRoomUsersRequest
 		User
