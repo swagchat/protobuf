@@ -10,7 +10,7 @@ protoc \
   -I$GOPATH/src/github.com/gogo/protobuf \
   --gogo_out=plugins=grpc:../../../ \
   --grpc-gateway_out=logtostderr=true:../../../ \
-  --js_out=import_style=closure,library=swagchatpb,binary:./protoc-gen-js/ \
+  --js_out=import_style=commonjs,binary:./protoc-gen-js/ \
   --ts_out=./protoc-gen-js/ \
   blockUserMessage.proto \
   blockUserService.proto \

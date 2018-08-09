@@ -1,7 +1,12 @@
 {
   "name": "swagchat-protobuf",
   "version": "0.1.0",
+  "types": "index.d.ts",
   "dependencies": {
+    "google-closure-library": "^20180716.0.0",
     "google-protobuf": "^3.6.0"
+  },
+  "devDependencies": {
+    "@types/google-protobuf": "^3.2.7"
   }
 }
