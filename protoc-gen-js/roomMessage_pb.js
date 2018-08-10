@@ -4363,11 +4363,10 @@ proto.swagchat.protobuf.RoomMessagesResponse.prototype.clearRoleIdsList = functi
  * @enum {number}
  */
 proto.swagchat.protobuf.RoomType = {
-  ROOMTYPENONE: 0,
-  ROOMTYPEONEONONE: 1,
-  ROOMTYPEPRIVATEROOM: 2,
-  ROOMTYPEPUBLICROOM: 3,
-  ROOMTYPENOTICEROOM: 4
+  ONEONONEROOM: 0,
+  PRIVATEROOM: 1,
+  PUBLICROOM: 2,
+  NOTICEROOM: 3
 };
 
 /**
@@ -4375,12 +4374,11 @@ proto.swagchat.protobuf.RoomType = {
  */
 proto.swagchat.protobuf.SpeechMode = {
   SPEECHMODENONE: 0,
-  SPEECHMODEWAKEUPWEBTOWEB: 1,
-  SPEECHMODEWAKEUPWEBTOCLOUD: 2,
-  SPEECHMODEWAKEUPCLOUDTOCLOUD: 3,
-  SPEECHMODEALWAYS: 4,
-  SPEECHMODEMANUAL: 5,
-  SPEECHMODEEND: 6
+  WAKEUPWEBTOWEB: 1,
+  WAKEUPWEBTOCLOUD: 2,
+  WAKEUPCLOUDTOCLOUD: 3,
+  ALWAYS: 4,
+  MANUAL: 5
 };
 
 goog.object.extend(exports, proto.swagchat.protobuf);

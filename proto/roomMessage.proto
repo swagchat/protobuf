@@ -8,21 +8,19 @@ import "commonMessage.proto";
 import "messageMessage.proto";
 
 enum RoomType {
-  RoomTypeNone = 0;
-  RoomTypeOneOnOne = 1;
-  RoomTypePrivateRoom = 2;
-  RoomTypePublicRoom = 3;
-  RoomTypeNoticeRoom = 4;
+  OneOnOneRoom = 0;
+  PrivateRoom = 1;
+  PublicRoom = 2;
+  NoticeRoom = 3;
 }
 
 enum SpeechMode {
 	SpeechModeNone = 0;
-	SpeechModeWakeupWebToWeb = 1;
-	SpeechModeWakeupWebToCloud = 2;
-	SpeechModeWakeupCloudToCloud = 3;
-	SpeechModeAlways = 4;
-	SpeechModeManual = 5;
-	SpeechModeEnd = 6;
+	WakeupWebToWeb = 1;
+	WakeupWebToCloud = 2;
+	WakeupCloudToCloud = 3;
+	Always = 4;
+	Manual = 5;
 }
 
 message Room {
@@ -50,7 +48,6 @@ message Room {
 
 message MiniUser {
   option (gogoproto.goproto_unrecognized) = false;
-  // optional string room_id = 1 [(gogoproto.customname) = "RoomID", (gogoproto.nullable) = false, (gogoproto.jsontag) = "roomId", (gogoproto.moretags) = "db:\"room_id\""];
   optional string user_id = 2 [(gogoproto.customname) = "UserID", (gogoproto.nullable) = false, (gogoproto.jsontag) = "userId", (gogoproto.moretags) = "db:\"user_id\""];
   optional string name = 3 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"name\""];
   optional string picture_url = 4 [(gogoproto.customname) = "PictureURL", (gogoproto.nullable) = false, (gogoproto.jsontag) = "pictureUrl", (gogoproto.moretags) = "db:\"picture_url\""];

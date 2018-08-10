@@ -45,10 +45,10 @@ export class User extends jspb.Message {
   getMetaData_asB64(): string;
   setMetaData(value: Uint8Array | string): void;
 
-  hasPublic(): boolean;
-  clearPublic(): void;
-  getPublic(): boolean | undefined;
-  setPublic(value: boolean): void;
+  hasPublicProfileScope(): boolean;
+  clearPublicProfileScope(): void;
+  getPublicProfileScope(): PublicProfileScope | undefined;
+  setPublicProfileScope(value: PublicProfileScope): void;
 
   hasCanBlock(): boolean;
   clearCanBlock(): void;
@@ -124,7 +124,7 @@ export namespace User {
     informationUrl?: string,
     unreadCount?: number,
     metaData: Uint8Array | string,
-    pb_public?: boolean,
+    publicProfileScope?: PublicProfileScope,
     canBlock?: boolean,
     lang?: string,
     accessToken?: string,
@@ -269,10 +269,10 @@ export class CreateUserRequest extends jspb.Message {
   getMetaData_asB64(): string;
   setMetaData(value: Uint8Array | string): void;
 
-  hasPublic(): boolean;
-  clearPublic(): void;
-  getPublic(): boolean | undefined;
-  setPublic(value: boolean): void;
+  hasPublicProfileScope(): boolean;
+  clearPublicProfileScope(): void;
+  getPublicProfileScope(): PublicProfileScope | undefined;
+  setPublicProfileScope(value: PublicProfileScope): void;
 
   hasCanBlock(): boolean;
   clearCanBlock(): void;
@@ -311,7 +311,7 @@ export namespace CreateUserRequest {
     pictureUrl?: string,
     informationUrl?: string,
     metaData: Uint8Array | string,
-    pb_public?: boolean,
+    publicProfileScope?: PublicProfileScope,
     canBlock?: boolean,
     lang?: string,
     blockUsersList: Array<string>,
@@ -449,10 +449,10 @@ export class UpdateUserRequest extends jspb.Message {
   getMetaData_asB64(): string;
   setMetaData(value: Uint8Array | string): void;
 
-  hasPublic(): boolean;
-  clearPublic(): void;
-  getPublic(): boolean | undefined;
-  setPublic(value: boolean): void;
+  hasPublicProfileScope(): boolean;
+  clearPublicProfileScope(): void;
+  getPublicProfileScope(): PublicProfileScope | undefined;
+  setPublicProfileScope(value: PublicProfileScope): void;
 
   hasCanBlock(): boolean;
   clearCanBlock(): void;
@@ -491,7 +491,7 @@ export namespace UpdateUserRequest {
     pictureUrl?: string,
     informationUrl?: string,
     metaData: Uint8Array | string,
-    pb_public?: boolean,
+    publicProfileScope?: PublicProfileScope,
     canBlock?: boolean,
     lang?: string,
     blockUsersList: Array<string>,
@@ -728,5 +728,10 @@ export namespace RoleUsersResponse {
 export enum UserRoomsFilter {
   ONLINE = 0,
   UNREAD = 1,
+}
+
+export enum PublicProfileScope {
+  SELF = 0,
+  ALL = 1,
 }
 

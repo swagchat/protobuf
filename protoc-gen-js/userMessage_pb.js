@@ -24,6 +24,7 @@ goog.exportSymbol('proto.swagchat.protobuf.GetUserRequest', null, global);
 goog.exportSymbol('proto.swagchat.protobuf.GetUserRoomsRequest', null, global);
 goog.exportSymbol('proto.swagchat.protobuf.GetUsersRequest', null, global);
 goog.exportSymbol('proto.swagchat.protobuf.MiniRoom', null, global);
+goog.exportSymbol('proto.swagchat.protobuf.PublicProfileScope', null, global);
 goog.exportSymbol('proto.swagchat.protobuf.RoleUsersResponse', null, global);
 goog.exportSymbol('proto.swagchat.protobuf.UpdateUserRequest', null, global);
 goog.exportSymbol('proto.swagchat.protobuf.User', null, global);
@@ -91,7 +92,7 @@ proto.swagchat.protobuf.User.toObject = function(includeInstance, msg) {
     informationUrl: jspb.Message.getField(msg, 15),
     unreadCount: jspb.Message.getField(msg, 16),
     metaData: msg.getMetaData_asB64(),
-    pb_public: jspb.Message.getField(msg, 18),
+    publicProfileScope: jspb.Message.getField(msg, 18),
     canBlock: jspb.Message.getField(msg, 19),
     lang: jspb.Message.getField(msg, 20),
     accessToken: jspb.Message.getField(msg, 21),
@@ -169,8 +170,8 @@ proto.swagchat.protobuf.User.deserializeBinaryFromReader = function(msg, reader)
       msg.setMetaData(value);
       break;
     case 18:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setPublic(value);
+      var value = /** @type {!proto.swagchat.protobuf.PublicProfileScope} */ (reader.readEnum());
+      msg.setPublicProfileScope(value);
       break;
     case 19:
       var value = /** @type {boolean} */ (reader.readBool());
@@ -295,9 +296,9 @@ proto.swagchat.protobuf.User.serializeBinaryToWriter = function(message, writer)
       f
     );
   }
-  f = /** @type {boolean} */ (jspb.Message.getField(message, 18));
+  f = /** @type {!proto.swagchat.protobuf.PublicProfileScope} */ (jspb.Message.getField(message, 18));
   if (f != null) {
-    writer.writeBool(
+    writer.writeEnum(
       18,
       f
     );
@@ -611,23 +612,21 @@ proto.swagchat.protobuf.User.prototype.hasMetaData = function() {
 
 
 /**
- * optional bool public = 18;
- * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
- * You should avoid comparisons like {@code val === true/false} in those cases.
- * @return {boolean}
+ * optional PublicProfileScope public_profile_scope = 18;
+ * @return {!proto.swagchat.protobuf.PublicProfileScope}
  */
-proto.swagchat.protobuf.User.prototype.getPublic = function() {
-  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 18, false));
+proto.swagchat.protobuf.User.prototype.getPublicProfileScope = function() {
+  return /** @type {!proto.swagchat.protobuf.PublicProfileScope} */ (jspb.Message.getFieldWithDefault(this, 18, 0));
 };
 
 
-/** @param {boolean} value */
-proto.swagchat.protobuf.User.prototype.setPublic = function(value) {
+/** @param {!proto.swagchat.protobuf.PublicProfileScope} value */
+proto.swagchat.protobuf.User.prototype.setPublicProfileScope = function(value) {
   jspb.Message.setField(this, 18, value);
 };
 
 
-proto.swagchat.protobuf.User.prototype.clearPublic = function() {
+proto.swagchat.protobuf.User.prototype.clearPublicProfileScope = function() {
   jspb.Message.setField(this, 18, undefined);
 };
 
@@ -636,7 +635,7 @@ proto.swagchat.protobuf.User.prototype.clearPublic = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.swagchat.protobuf.User.prototype.hasPublic = function() {
+proto.swagchat.protobuf.User.prototype.hasPublicProfileScope = function() {
   return jspb.Message.getField(this, 18) != null;
 };
 
@@ -1750,7 +1749,7 @@ proto.swagchat.protobuf.CreateUserRequest.toObject = function(includeInstance, m
     pictureUrl: jspb.Message.getField(msg, 13),
     informationUrl: jspb.Message.getField(msg, 14),
     metaData: msg.getMetaData_asB64(),
-    pb_public: jspb.Message.getField(msg, 16),
+    publicProfileScope: jspb.Message.getField(msg, 16),
     canBlock: jspb.Message.getField(msg, 17),
     lang: jspb.Message.getField(msg, 18),
     blockUsersList: jspb.Message.getRepeatedField(msg, 19),
@@ -1812,8 +1811,8 @@ proto.swagchat.protobuf.CreateUserRequest.deserializeBinaryFromReader = function
       msg.setMetaData(value);
       break;
     case 16:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setPublic(value);
+      var value = /** @type {!proto.swagchat.protobuf.PublicProfileScope} */ (reader.readEnum());
+      msg.setPublicProfileScope(value);
       break;
     case 17:
       var value = /** @type {boolean} */ (reader.readBool());
@@ -1895,9 +1894,9 @@ proto.swagchat.protobuf.CreateUserRequest.serializeBinaryToWriter = function(mes
       f
     );
   }
-  f = /** @type {boolean} */ (jspb.Message.getField(message, 16));
+  f = /** @type {!proto.swagchat.protobuf.PublicProfileScope} */ (jspb.Message.getField(message, 16));
   if (f != null) {
-    writer.writeBool(
+    writer.writeEnum(
       16,
       f
     );
@@ -2103,23 +2102,21 @@ proto.swagchat.protobuf.CreateUserRequest.prototype.hasMetaData = function() {
 
 
 /**
- * optional bool public = 16;
- * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
- * You should avoid comparisons like {@code val === true/false} in those cases.
- * @return {boolean}
+ * optional PublicProfileScope public_profile_scope = 16;
+ * @return {!proto.swagchat.protobuf.PublicProfileScope}
  */
-proto.swagchat.protobuf.CreateUserRequest.prototype.getPublic = function() {
-  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 16, false));
+proto.swagchat.protobuf.CreateUserRequest.prototype.getPublicProfileScope = function() {
+  return /** @type {!proto.swagchat.protobuf.PublicProfileScope} */ (jspb.Message.getFieldWithDefault(this, 16, 0));
 };
 
 
-/** @param {boolean} value */
-proto.swagchat.protobuf.CreateUserRequest.prototype.setPublic = function(value) {
+/** @param {!proto.swagchat.protobuf.PublicProfileScope} value */
+proto.swagchat.protobuf.CreateUserRequest.prototype.setPublicProfileScope = function(value) {
   jspb.Message.setField(this, 16, value);
 };
 
 
-proto.swagchat.protobuf.CreateUserRequest.prototype.clearPublic = function() {
+proto.swagchat.protobuf.CreateUserRequest.prototype.clearPublicProfileScope = function() {
   jspb.Message.setField(this, 16, undefined);
 };
 
@@ -2128,7 +2125,7 @@ proto.swagchat.protobuf.CreateUserRequest.prototype.clearPublic = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.swagchat.protobuf.CreateUserRequest.prototype.hasPublic = function() {
+proto.swagchat.protobuf.CreateUserRequest.prototype.hasPublicProfileScope = function() {
   return jspb.Message.getField(this, 16) != null;
 };
 
@@ -3053,7 +3050,7 @@ proto.swagchat.protobuf.UpdateUserRequest.toObject = function(includeInstance, m
     pictureUrl: jspb.Message.getField(msg, 14),
     informationUrl: jspb.Message.getField(msg, 15),
     metaData: msg.getMetaData_asB64(),
-    pb_public: jspb.Message.getField(msg, 18),
+    publicProfileScope: jspb.Message.getField(msg, 18),
     canBlock: jspb.Message.getField(msg, 19),
     lang: jspb.Message.getField(msg, 20),
     blockUsersList: jspb.Message.getRepeatedField(msg, 21),
@@ -3115,8 +3112,8 @@ proto.swagchat.protobuf.UpdateUserRequest.deserializeBinaryFromReader = function
       msg.setMetaData(value);
       break;
     case 18:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setPublic(value);
+      var value = /** @type {!proto.swagchat.protobuf.PublicProfileScope} */ (reader.readEnum());
+      msg.setPublicProfileScope(value);
       break;
     case 19:
       var value = /** @type {boolean} */ (reader.readBool());
@@ -3198,9 +3195,9 @@ proto.swagchat.protobuf.UpdateUserRequest.serializeBinaryToWriter = function(mes
       f
     );
   }
-  f = /** @type {boolean} */ (jspb.Message.getField(message, 18));
+  f = /** @type {!proto.swagchat.protobuf.PublicProfileScope} */ (jspb.Message.getField(message, 18));
   if (f != null) {
-    writer.writeBool(
+    writer.writeEnum(
       18,
       f
     );
@@ -3406,23 +3403,21 @@ proto.swagchat.protobuf.UpdateUserRequest.prototype.hasMetaData = function() {
 
 
 /**
- * optional bool public = 18;
- * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
- * You should avoid comparisons like {@code val === true/false} in those cases.
- * @return {boolean}
+ * optional PublicProfileScope public_profile_scope = 18;
+ * @return {!proto.swagchat.protobuf.PublicProfileScope}
  */
-proto.swagchat.protobuf.UpdateUserRequest.prototype.getPublic = function() {
-  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 18, false));
+proto.swagchat.protobuf.UpdateUserRequest.prototype.getPublicProfileScope = function() {
+  return /** @type {!proto.swagchat.protobuf.PublicProfileScope} */ (jspb.Message.getFieldWithDefault(this, 18, 0));
 };
 
 
-/** @param {boolean} value */
-proto.swagchat.protobuf.UpdateUserRequest.prototype.setPublic = function(value) {
+/** @param {!proto.swagchat.protobuf.PublicProfileScope} value */
+proto.swagchat.protobuf.UpdateUserRequest.prototype.setPublicProfileScope = function(value) {
   jspb.Message.setField(this, 18, value);
 };
 
 
-proto.swagchat.protobuf.UpdateUserRequest.prototype.clearPublic = function() {
+proto.swagchat.protobuf.UpdateUserRequest.prototype.clearPublicProfileScope = function() {
   jspb.Message.setField(this, 18, undefined);
 };
 
@@ -3431,7 +3426,7 @@ proto.swagchat.protobuf.UpdateUserRequest.prototype.clearPublic = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.swagchat.protobuf.UpdateUserRequest.prototype.hasPublic = function() {
+proto.swagchat.protobuf.UpdateUserRequest.prototype.hasPublicProfileScope = function() {
   return jspb.Message.getField(this, 18) != null;
 };
 
@@ -5197,6 +5192,14 @@ proto.swagchat.protobuf.RoleUsersResponse.prototype.clearUserIdsList = function(
 proto.swagchat.protobuf.UserRoomsFilter = {
   ONLINE: 0,
   UNREAD: 1
+};
+
+/**
+ * @enum {number}
+ */
+proto.swagchat.protobuf.PublicProfileScope = {
+  SELF: 0,
+  ALL: 1
 };
 
 goog.object.extend(exports, proto.swagchat.protobuf);
