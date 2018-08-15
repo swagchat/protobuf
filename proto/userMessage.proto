@@ -58,9 +58,9 @@ message MiniRoom {
   optional string last_message_updated = 10 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"-\""];
   optional bool can_left = 11 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"can_left\""];
   optional int64 created_timestamp = 21 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"created\""];
-  optional string created = 22 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"created\""];
+  optional string created = 22 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"-\""];
   optional int64 modified_timestamp = 23 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"modified\""];
-  optional string modified = 24 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"modified\""];
+  optional string modified = 24 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"-\""];
   repeated MiniUser users = 30 [(gogoproto.moretags) = "db:\"-\""];
   optional int64 ru_unread_count = 31 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"ru_unread_count\""];
 }
