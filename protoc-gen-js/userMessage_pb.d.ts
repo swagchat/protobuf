@@ -200,10 +200,15 @@ export class MiniRoom extends jspb.Message {
   getLastMessage(): string | undefined;
   setLastMessage(value: string): void;
 
+  hasLastMessageUpdatedTimestamp(): boolean;
+  clearLastMessageUpdatedTimestamp(): void;
+  getLastMessageUpdatedTimestamp(): number | undefined;
+  setLastMessageUpdatedTimestamp(value: number): void;
+
   hasLastMessageUpdated(): boolean;
   clearLastMessageUpdated(): void;
-  getLastMessageUpdated(): number | undefined;
-  setLastMessageUpdated(value: number): void;
+  getLastMessageUpdated(): string | undefined;
+  setLastMessageUpdated(value: string): void;
 
   hasCanLeft(): boolean;
   clearCanLeft(): void;
@@ -260,7 +265,8 @@ export namespace MiniRoom {
     metaData: Uint8Array | string,
     type?: roomMessage_pb.RoomType,
     lastMessage?: string,
-    lastMessageUpdated?: number,
+    lastMessageUpdatedTimestamp?: number,
+    lastMessageUpdated?: string,
     canLeft?: boolean,
     createdTimestamp?: number,
     created?: string,

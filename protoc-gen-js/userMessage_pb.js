@@ -1148,8 +1148,9 @@ proto.swagchat.protobuf.MiniRoom.toObject = function(includeInstance, msg) {
     metaData: msg.getMetaData_asB64(),
     type: jspb.Message.getField(msg, 7),
     lastMessage: jspb.Message.getField(msg, 8),
-    lastMessageUpdated: jspb.Message.getField(msg, 9),
-    canLeft: jspb.Message.getField(msg, 10),
+    lastMessageUpdatedTimestamp: jspb.Message.getField(msg, 9),
+    lastMessageUpdated: jspb.Message.getField(msg, 10),
+    canLeft: jspb.Message.getField(msg, 11),
     createdTimestamp: jspb.Message.getField(msg, 21),
     created: jspb.Message.getField(msg, 22),
     modifiedTimestamp: jspb.Message.getField(msg, 23),
@@ -1227,9 +1228,13 @@ proto.swagchat.protobuf.MiniRoom.deserializeBinaryFromReader = function(msg, rea
       break;
     case 9:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setLastMessageUpdated(value);
+      msg.setLastMessageUpdatedTimestamp(value);
       break;
     case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLastMessageUpdated(value);
+      break;
+    case 11:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setCanLeft(value);
       break;
@@ -1350,10 +1355,17 @@ proto.swagchat.protobuf.MiniRoom.serializeBinaryToWriter = function(message, wri
       f
     );
   }
-  f = /** @type {boolean} */ (jspb.Message.getField(message, 10));
+  f = /** @type {string} */ (jspb.Message.getField(message, 10));
+  if (f != null) {
+    writer.writeString(
+      10,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 11));
   if (f != null) {
     writer.writeBool(
-      10,
+      11,
       f
     );
   }
@@ -1660,21 +1672,21 @@ proto.swagchat.protobuf.MiniRoom.prototype.hasLastMessage = function() {
 
 
 /**
- * optional int64 last_message_updated = 9;
+ * optional int64 last_message_updated_timestamp = 9;
  * @return {number}
  */
-proto.swagchat.protobuf.MiniRoom.prototype.getLastMessageUpdated = function() {
+proto.swagchat.protobuf.MiniRoom.prototype.getLastMessageUpdatedTimestamp = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
 };
 
 
 /** @param {number} value */
-proto.swagchat.protobuf.MiniRoom.prototype.setLastMessageUpdated = function(value) {
+proto.swagchat.protobuf.MiniRoom.prototype.setLastMessageUpdatedTimestamp = function(value) {
   jspb.Message.setField(this, 9, value);
 };
 
 
-proto.swagchat.protobuf.MiniRoom.prototype.clearLastMessageUpdated = function() {
+proto.swagchat.protobuf.MiniRoom.prototype.clearLastMessageUpdatedTimestamp = function() {
   jspb.Message.setField(this, 9, undefined);
 };
 
@@ -1683,29 +1695,27 @@ proto.swagchat.protobuf.MiniRoom.prototype.clearLastMessageUpdated = function() 
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.swagchat.protobuf.MiniRoom.prototype.hasLastMessageUpdated = function() {
+proto.swagchat.protobuf.MiniRoom.prototype.hasLastMessageUpdatedTimestamp = function() {
   return jspb.Message.getField(this, 9) != null;
 };
 
 
 /**
- * optional bool can_left = 10;
- * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
- * You should avoid comparisons like {@code val === true/false} in those cases.
- * @return {boolean}
+ * optional string last_message_updated = 10;
+ * @return {string}
  */
-proto.swagchat.protobuf.MiniRoom.prototype.getCanLeft = function() {
-  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 10, false));
+proto.swagchat.protobuf.MiniRoom.prototype.getLastMessageUpdated = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
 };
 
 
-/** @param {boolean} value */
-proto.swagchat.protobuf.MiniRoom.prototype.setCanLeft = function(value) {
+/** @param {string} value */
+proto.swagchat.protobuf.MiniRoom.prototype.setLastMessageUpdated = function(value) {
   jspb.Message.setField(this, 10, value);
 };
 
 
-proto.swagchat.protobuf.MiniRoom.prototype.clearCanLeft = function() {
+proto.swagchat.protobuf.MiniRoom.prototype.clearLastMessageUpdated = function() {
   jspb.Message.setField(this, 10, undefined);
 };
 
@@ -1714,8 +1724,39 @@ proto.swagchat.protobuf.MiniRoom.prototype.clearCanLeft = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.swagchat.protobuf.MiniRoom.prototype.hasCanLeft = function() {
+proto.swagchat.protobuf.MiniRoom.prototype.hasLastMessageUpdated = function() {
   return jspb.Message.getField(this, 10) != null;
+};
+
+
+/**
+ * optional bool can_left = 11;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.swagchat.protobuf.MiniRoom.prototype.getCanLeft = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 11, false));
+};
+
+
+/** @param {boolean} value */
+proto.swagchat.protobuf.MiniRoom.prototype.setCanLeft = function(value) {
+  jspb.Message.setField(this, 11, value);
+};
+
+
+proto.swagchat.protobuf.MiniRoom.prototype.clearCanLeft = function() {
+  jspb.Message.setField(this, 11, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.swagchat.protobuf.MiniRoom.prototype.hasCanLeft = function() {
+  return jspb.Message.getField(this, 11) != null;
 };
 
 

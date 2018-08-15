@@ -54,8 +54,9 @@ message MiniRoom {
   optional bytes meta_data = 6 [(gogoproto.moretags) = "db:\"meta_data\""];
   optional RoomType type = 7 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"type\""];
   optional string last_message = 8 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"last_message\""];
-  optional int64 last_message_updated = 9 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"last_message_updated\""];
-  optional bool can_left = 10 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"can_left\""];
+  optional int64 last_message_updated_timestamp = 9 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"last_message_updated\""];
+  optional string last_message_updated = 10 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"-\""];
+  optional bool can_left = 11 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"can_left\""];
   optional int64 created_timestamp = 21 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"created\""];
   optional string created = 22 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"created\""];
   optional int64 modified_timestamp = 23 [(gogoproto.nullable) = false, (gogoproto.moretags) = "db:\"modified\""];
