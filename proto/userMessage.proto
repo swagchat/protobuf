@@ -9,8 +9,9 @@ import "roomMessage.proto";
 import "commonMessage.proto";
 
 enum UserRoomsFilter {
-  Online = 0;
-  Unread = 1;
+  None = 0;
+  Online = 1;
+  Unread = 2;
 }
 
 enum PublicProfileScope {

@@ -5477,8 +5477,9 @@ proto.swagchat.protobuf.RoleUsersResponse.prototype.clearUserIdsList = function(
  * @enum {number}
  */
 proto.swagchat.protobuf.UserRoomsFilter = {
-  ONLINE: 0,
-  UNREAD: 1
+  NONE: 0,
+  ONLINE: 1,
+  UNREAD: 2
 };
 
 /**

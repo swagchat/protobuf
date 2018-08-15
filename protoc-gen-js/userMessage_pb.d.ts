@@ -768,8 +768,9 @@ export namespace RoleUsersResponse {
 }
 
 export enum UserRoomsFilter {
-  ONLINE = 0,
-  UNREAD = 1,
+  NONE = 0,
+  ONLINE = 1,
+  UNREAD = 2,
 }
 
 export enum PublicProfileScope {
